@@ -1,0 +1,83 @@
+/* Ponta a Ponta Brasil Express — tokens e estilos globais */
+
+:root {
+  --bone: #F3EEE6;
+  --paper: #FBF8F3;
+  --sand: #EAE3D8;
+  --ink: #14110F;
+  --ink-2: #4E4740;
+  --muted: #6B635A;
+  --line: #D9D1C5;
+  --line-2: #CFC6B8;
+  --wine: #7A2E24;
+  --rose: #D9B8AF;
+  --rose-2: #C9A9A1;
+  --dark-line: #3A342F;
+  --dark-muted: #B5ABA0;
+
+  --serif: 'Cormorant Garamond', 'Times New Roman', serif;
+  --sans: 'Hanken Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --gutter: clamp(20px, 4vw, 56px);
+  --section: clamp(80px, 10vw, 152px);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bone);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, p, dl, dd, ol { margin: 0; }
+ol { padding: 0; list-style: none; }
+a { color: var(--ink); }
+a:hover { color: var(--wine); }
+::selection { background: var(--wine); color: var(--bone); }
+a:focus-visible, button:focus-visible { outline: 1px solid var(--wine); outline-offset: 4px; }
+
+.skip {
+  position: absolute; left: 16px; top: -60px; z-index: 10;
+  background: var(--ink); color: var(--bone); padding: 12px 18px; text-decoration: none;
+}
+.skip:focus { top: 16px; color: var(--bone); }
+
+/* Layout */
+.wrap-x { padding-left: var(--gutter); padding-right: var(--gutter); }
+.container { max-width: 1320px; margin: 0 auto; }
+.section { padding-top: var(--section); padding-bottom: var(--section); }
+.stack-xl { display: flex; flex-direction: column; gap: clamp(48px, 6vw, 88px); }
+
+/* Tipografia */
+.eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 4px; text-transform: uppercase; color: var(--muted); }
+.display-xl, .display-l { font-family: var(--serif); font-weight: 300; letter-spacing: -1px; }
+.display-xl { font-size: clamp(44px, 5.4vw, 84px); line-height: 0.98; }
+.display-l { font-size: clamp(40px, 5vw, 76px); line-height: 1.02; }
+.display-xl em, .display-l em { color: var(--wine); font-weight: 400; }
+.body { font-size: 16px; font-weight: 300; line-height: 1.75; color: var(--ink-2); }
+
+/* Cabeçalho de seção */
+.section-head { display: flex; flex-wrap: wrap; gap: 24px 64px; align-items: flex-end; justify-content: space-between; }
+.section-head h2 { flex: 1 1 520px; min-width: 0; }
+.section-head--center { flex-direction: column; align-items: center; text-align: center; gap: 20px; }
+.section-head--center h2 { flex: none; }
+
+/* Botões */
+.btn {
+  display: inline-flex; align-items: center; justify-content: space-between; gap: 18px;
+  font-size: 12px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase;
+  text-decoration: none; padding: 22px 32px; min-height: 64px;
+  transition: background-color .35s ease, color .35s ease, letter-spacing .35s ease;
+}
+.btn--ink { background: var(--ink); color: var(--bone); }
+.btn--ink:hover { background: var(--wine); color: var(--bone); letter-spacing: 3.5px; }
+.btn--bone { background: var(--bone); color: var(--ink); font-weight: 600; padding: 22px 26px; }
+.btn--bone:hover { background: #fff; color: var(--wine); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
