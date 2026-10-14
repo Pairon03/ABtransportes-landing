@@ -127,7 +127,7 @@ const stages = computed(() => [
   position: relative;
   background: #fff;
   border-radius: var(--r-lg);
-  box-shadow: 0 1px 0 var(--line), 0 30px 60px -30px rgba(227, 20, 27, 0.28);
+  box-shadow: 0 1px 0 var(--line), 0 30px 60px -30px rgba(227, 20, 27, 0.45);
   padding: 14px 14px 18px;
 }
 .route__map { width: 100%; height: auto; display: block; border-radius: 22px; background: var(--sky); }

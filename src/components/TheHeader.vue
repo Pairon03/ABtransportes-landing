@@ -36,6 +36,9 @@ onBeforeUnmount(() => window.removeEventListener('scroll', onScroll))
   position: sticky; top: 0; z-index: 30;
   transition: background-color .3s ease, box-shadow .3s ease;
 }
+.header:not(.header--scrolled) { background: var(--ink); }
+.header:not(.header--scrolled) .logo__text { color: #fff; }
+.header:not(.header--scrolled) .logo__text span { color: #FF6B70; }
 .header--scrolled {
   background: rgba(255, 255, 255, 0.86);
   backdrop-filter: saturate(160%) blur(12px);
