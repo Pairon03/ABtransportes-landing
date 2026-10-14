@@ -2,12 +2,6 @@
 import { waLink } from '../config'
 import AppIcon from './AppIcon.vue'
 import RouteAnimation from './RouteAnimation.vue'
-
-const facts = [
-  { icon: 'bolt', text: 'Coleta e entrega no mesmo dia, conforme disponibilidade' },
-  { icon: 'clock', text: 'Acompanhamento em tempo real por até 8 horas' },
-  { icon: 'camera', text: 'Foto na coleta e na entrega' },
-]
 </script>
 
 <template>
@@ -29,9 +23,6 @@ const facts = [
             <AppIcon name="chat" :size="20" /> Falar no WhatsApp
           </a>
         </div>
-        <ul class="facts">
-          <li v-for="f in facts" :key="f.icon"><AppIcon :name="f.icon" :size="20" />{{ f.text }}</li>
-        </ul>
       </div>
 
       <RouteAnimation class="hero__visual" />
@@ -56,9 +47,6 @@ const facts = [
 }
 .hero__kicker :deep(svg:last-of-type) { margin-right: 4px; }
 .hero__actions { display: flex; flex-wrap: wrap; gap: 14px; }
-.facts { list-style: none; margin: 4px 0 0; padding: 0; display: grid; gap: 10px; }
-.facts li { display: flex; align-items: center; gap: 12px; color: var(--ink-2); font-size: 16px; }
-.facts :deep(svg) { color: var(--cobalt); flex: none; }
 
 @media (max-width: 960px) {
   .hero__grid { grid-template-columns: 1fr; }

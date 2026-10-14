@@ -3,12 +3,6 @@ import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { PHONE_LABEL, waLink } from '../config'
 import AppIcon from './AppIcon.vue'
 
-const links = [
-  { href: '#frota', label: 'Frota' },
-  { href: '#fotos', label: 'Registro fotográfico' },
-  { href: '#como-funciona', label: 'Como funciona' },
-]
-
 // Cabeçalho ganha fundo ao rolar a página
 const scrolled = ref(false)
 const onScroll = () => { scrolled.value = window.scrollY > 12 }
@@ -28,10 +22,6 @@ onBeforeUnmount(() => window.removeEventListener('scroll', onScroll))
         </svg>
         <span class="logo__text">Ponta a Ponta <span>Brasil Express</span></span>
       </a>
-
-      <nav class="nav" aria-label="Seções da página">
-        <a v-for="l in links" :key="l.href" :href="l.href">{{ l.label }}</a>
-      </nav>
 
       <a class="btn btn--orange header__cta" :href="waLink()" target="_blank" rel="noopener">
         <AppIcon name="chat" :size="20" />
@@ -57,14 +47,8 @@ onBeforeUnmount(() => window.removeEventListener('scroll', onScroll))
 .logo__mark { width: 40px; height: 40px; flex: none; }
 .logo__text { font-weight: 800; font-size: 19px; letter-spacing: -0.02em; line-height: 1.05; }
 .logo__text span { display: block; font-weight: 500; font-size: 14px; color: var(--cobalt); letter-spacing: 0; }
-.nav { display: flex; gap: 28px; }
-.nav a { color: var(--ink-2); text-decoration: none; font-weight: 550; font-size: 16px; padding: 10px 0; }
-.nav a:hover { color: var(--cobalt); }
 .header__cta { min-height: 46px; padding: 0 18px; font-size: 15px; box-shadow: 0 4px 0 var(--orange-2); }
 
-@media (max-width: 880px) {
-  .nav { display: none; }
-}
 @media (max-width: 460px) {
   .header__cta-label { display: none; }
   .header__cta { width: 46px; padding: 0; }

@@ -2,6 +2,8 @@
 
 Landing page da **Ponta a Ponta Brasil Express**, empresa de coleta e entrega com moto, carro e caminhão. Feita em **Vue 3 + Vite**, sem dependências além do Vue.
 
+Uma página, um objetivo: levar o visitante a pedir orçamento pelo WhatsApp. Ordem: topo com a rota animada → diferenciais → como funciona → orçamento → chamada final.
+
 > Sua entrega, do ponto A ao ponto B, com rapidez, segurança e confiança.
 
 ## Rodar no seu computador
@@ -36,13 +38,11 @@ src/
 ├── assets/main.css            cores, fonte, botões e base (variáveis no :root)
 ├── composables/useInView.js   dispara animações quando a seção aparece na tela
 └── components/
-    ├── TheHeader.vue          cabeçalho fixo (ganha fundo ao rolar)
-    ├── HeroRoute.vue          topo: título, botões e destaques
+    ├── TheHeader.vue          cabeçalho fixo: logo e WhatsApp (ganha fundo ao rolar)
+    ├── HeroRoute.vue          topo: título e botões
     ├── RouteAnimation.vue     rota animada de A até B com as etapas acendendo
-    ├── FleetSection.vue       moto, carro e caminhão (fotos em public/img)
-    ├── PhotoProof.vue         registro fotográfico na coleta e na entrega
+    ├── PhotoProof.vue         diferenciais + fotos de coleta e entrega
     ├── HowItWorks.vue         as 3 etapas com a "estrada" que se desenha
-    ├── VisibilityBand.vue     faixa azul de transparência
     ├── QuoteWizard.vue        orçamento em etapas, termina no WhatsApp
     ├── FinalCta.vue           chamada final em laranja
     ├── TheFooter.vue          rodapé

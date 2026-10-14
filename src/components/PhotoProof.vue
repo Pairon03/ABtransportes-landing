@@ -10,15 +10,16 @@ const { target, inView } = useInView({ threshold: 0.3 })
   <section id="fotos" ref="target" class="section wrap proof" :class="{ 'proof--in': inView }">
     <div class="container proof__grid">
       <div class="proof__copy">
-        <h2 class="h-lg">Você vê o seu material na coleta e na entrega.</h2>
+        <h2 class="h-lg">Transporte com mais visibilidade e tranquilidade.</h2>
         <p class="lead">
-          Registramos fotos nos dois pontos da rota. Mais transparência e segurança
-          para a sua operação, e você informado durante todo o processo.
+          Você acompanha o trajeto e vê o seu material na coleta e na entrega.
+          Moto, carro ou caminhão, em veículo exclusivo ou carga fracionada.
         </p>
         <ul class="proof__list">
-          <li><AppIcon name="camera" :size="22" />Foto do material no momento da coleta</li>
-          <li><AppIcon name="pin" :size="22" />Acompanhamento em tempo real por até 8 horas</li>
-          <li><AppIcon name="check" :size="22" />Foto do material entregue no destino</li>
+          <li><AppIcon name="bolt" :size="22" /><span><strong>Coleta e entrega no mesmo dia</strong>, conforme disponibilidade e demanda</span></li>
+          <li><AppIcon name="pin" :size="22" /><span><strong>Acompanhamento em tempo real</strong> por até 8 horas</span></li>
+          <li><AppIcon name="camera" :size="22" /><span><strong>Registro fotográfico</strong> na coleta e na entrega</span></li>
+          <li><AppIcon name="shield" :size="22" /><span><strong>Compromisso do início ao fim</strong>, com você informado durante o processo</span></li>
         </ul>
       </div>
 
@@ -42,8 +43,9 @@ const { target, inView } = useInView({ threshold: 0.3 })
 .proof__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: clamp(40px, 6vw, 96px); align-items: center; }
 .proof__copy { display: flex; flex-direction: column; gap: 22px; }
 .proof__list { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 14px; }
-.proof__list li { display: flex; gap: 14px; align-items: center; font-weight: 550; }
-.proof__list :deep(svg) { color: var(--cobalt); flex: none; }
+.proof__list li { display: flex; gap: 14px; align-items: flex-start; color: var(--ink-2); line-height: 1.45; }
+.proof__list strong { color: var(--ink); font-weight: 700; }
+.proof__list :deep(svg) { color: var(--cobalt); flex: none; margin-top: 1px; }
 
 .photos { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 0; padding: 20px 0 36px; }
 .photo {
