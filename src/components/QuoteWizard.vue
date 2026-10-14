@@ -308,8 +308,8 @@ const quoteLink = computed(() => {
 .quote__intro { display: flex; flex-direction: column; gap: 20px; position: sticky; top: 110px; }
 
 .wizard {
-  background: #fff; border-radius: var(--r-lg); padding: clamp(20px, 3vw, 36px);
-  box-shadow: 0 1px 0 var(--line), 0 40px 80px -40px rgba(0, 0, 0, 0.25);
+  background: var(--sky); border-radius: var(--r-lg); padding: clamp(20px, 3vw, 36px);
+  box-shadow: inset 0 0 0 1px var(--line), 0 40px 80px -40px rgba(227, 20, 27, 0.35);
 }
 
 /* rota de progresso */
@@ -319,7 +319,7 @@ const quoteLink = computed(() => {
 .track__vehicle {
   position: absolute; top: 0; transform: translateX(-50%);
   display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%;
-  background: var(--orange); color: #fff; box-shadow: 0 0 0 4px #fff;
+  background: var(--orange); color: #fff; box-shadow: 0 0 0 4px var(--sky);
   transition: left .6s var(--ease-out);
 }
 
@@ -329,9 +329,9 @@ const quoteLink = computed(() => {
   padding: 10px 4px; border: 0; border-radius: 12px; background: transparent; cursor: pointer;
   font: inherit; font-size: 13px; line-height: 1.2; color: var(--ink-3); text-align: center;
 }
-.tab:hover { background: var(--sky); color: var(--ink); }
-.tab--done { color: var(--orange); }
-.tab--current { background: var(--sky); color: var(--ink); font-weight: 700; }
+.tab:hover { background: var(--sky-2); color: var(--ink); }
+.tab--done { color: #FF5A60; }
+.tab--current { background: var(--sky-2); color: var(--ink); font-weight: 700; }
 
 .panel__viewport { overflow: hidden; min-height: 250px; }
 .panel__step { border: 0; margin: 0; padding: 0; min-width: 0; }
@@ -343,13 +343,13 @@ const quoteLink = computed(() => {
 .field label, .field__label { font-size: 15px; font-weight: 600; color: var(--ink); }
 .field input, .hours select {
   font: inherit; font-size: 17px; color: var(--ink);
-  background: var(--sky); border: 2px solid transparent; border-radius: 14px;
+  background: var(--paper); border: 2px solid var(--line); border-radius: 14px;
   padding: 12px 16px; min-height: 52px; width: 100%;
   transition: border-color .2s ease, background-color .2s ease;
 }
 .field input::placeholder { color: #85858C; }
-.field input:hover, .hours select:hover { border-color: var(--sky-2); }
-.field input:focus, .hours select:focus { outline: none; border-color: var(--cobalt); background: #fff; }
+.field input:hover, .hours select:hover { border-color: #3A3A40; }
+.field input:focus, .hours select:focus { outline: none; border-color: var(--cobalt); background: #000; }
 
 /* horário início e fim */
 .hours { display: flex; gap: 12px; flex-wrap: wrap; }
@@ -357,15 +357,15 @@ const quoteLink = computed(() => {
 .hours__item span { flex: none; }
 .hours select {
   appearance: none; -webkit-appearance: none; cursor: pointer; padding-right: 44px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23111111' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23F4F4F5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
   background-repeat: no-repeat; background-position: right 14px center;
 }
 
 /* status da consulta de CEP */
 .cep-status { font-size: 13px; line-height: 1.35; color: var(--ink-3); min-height: 1.35em; }
 .cep-status--loading { color: var(--ink-2); }
-.cep-status--ok { color: #1B7F3B; }
-.cep-status--notfound, .cep-status--error { color: var(--orange-2); }
+.cep-status--ok { color: #4ADE80; }
+.cep-status--notfound, .cep-status--error { color: #FF6B70; }
 
 .choices { display: grid; gap: 18px; margin-top: 22px; }
 .choice .field__label { display: block; margin-bottom: 8px; }
@@ -373,7 +373,7 @@ const quoteLink = computed(() => {
 .chip {
   display: inline-flex; align-items: center; gap: 6px;
   font: inherit; font-size: 16px; font-weight: 600; min-height: 48px; padding: 0 20px;
-  border-radius: 999px; border: 2px solid var(--line); background: #fff; color: var(--ink); cursor: pointer;
+  border-radius: 999px; border: 2px solid var(--line); background: transparent; color: var(--ink); cursor: pointer;
   transition: background-color .2s ease, border-color .2s ease, color .2s ease;
 }
 .chip:hover { border-color: var(--cobalt); }

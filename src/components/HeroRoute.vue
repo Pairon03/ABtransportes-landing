@@ -37,7 +37,7 @@ import RouteAnimation from './RouteAnimation.vue'
   /* topo escuro: o vermelho da rota e do botão ganham força sobre o preto */
   background:
     radial-gradient(900px 480px at 80% 10%, rgba(227, 20, 27, 0.28), transparent 70%),
-    var(--ink);
+    var(--paper);
   color: #fff;
 }
 .hero :deep(.h-xl) { color: #fff; }

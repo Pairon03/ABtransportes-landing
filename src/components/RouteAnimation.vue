@@ -127,18 +127,18 @@ const stages = computed(() => [
   position: relative;
   background: #fff;
   border-radius: var(--r-lg);
-  box-shadow: 0 1px 0 var(--line), 0 30px 60px -30px rgba(227, 20, 27, 0.45);
+  box-shadow: 0 30px 60px -30px rgba(227, 20, 27, 0.45);
   padding: 14px 14px 18px;
 }
-.route__map { width: 100%; height: auto; display: block; border-radius: 22px; background: var(--sky); }
+.route__map { width: 100%; height: auto; display: block; border-radius: 22px; background: #FFF2F1; }
 .route__pulse { transform-origin: center; animation: pulse 2.2s ease-out infinite; }
 @keyframes pulse { from { transform: scale(.8); opacity: .5 } to { transform: scale(2); opacity: 0 } }
 
 .route__stages { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 14px; }
 .stage {
   display: flex; gap: 10px; align-items: flex-start;
-  padding: 10px 12px; border-radius: 14px; background: var(--sky);
-  color: var(--ink-3); font-size: 14px; line-height: 1.3;
+  padding: 10px 12px; border-radius: 14px; background: #F4F4F5;
+  color: #6B6B73; font-size: 14px; line-height: 1.3;
   transition: background-color .4s ease, color .4s ease, transform .4s var(--ease-out);
 }
 .stage > span:last-child { min-width: 0; overflow-wrap: anywhere; }
@@ -146,7 +146,7 @@ const stages = computed(() => [
 .stage__detail { display: block; }
 .stage__icon {
   flex: none; display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%;
-  background: #fff; color: var(--ink-3); transition: background-color .4s ease, color .4s ease;
+  background: #fff; color: #6B6B73; transition: background-color .4s ease, color .4s ease;
 }
 .stage--on { background: var(--orange); color: #fff; transform: translateY(-3px); }
 .stage--on .stage__icon { background: #fff; color: var(--orange); }

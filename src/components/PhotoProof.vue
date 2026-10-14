@@ -49,8 +49,8 @@ const { target, inView } = useInView({ threshold: 0.3 })
 
 .photos { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 0; padding: 20px 0 36px; }
 .photo {
-  background: #fff; padding: 12px 12px 18px; border-radius: 14px;
-  box-shadow: 0 2px 0 var(--line), 0 30px 50px -28px rgba(0, 0, 0, 0.35);
+  background: #fff; color: #111; padding: 12px 12px 18px; border-radius: 14px;
+  box-shadow: 0 30px 50px -28px rgba(0, 0, 0, 0.8);
   transition: transform .9s var(--ease-out), opacity .9s ease;
   opacity: 0;
 }
@@ -66,7 +66,7 @@ const { target, inView } = useInView({ threshold: 0.3 })
 .proof--in .photo:hover { transform: translate(0, -6px) rotate(0deg); z-index: 3; }
 
 .dot { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; font-size: 14px; font-weight: 800; }
-.dot--a { background: var(--paper); color: var(--cobalt); box-shadow: inset 0 0 0 3px var(--cobalt); }
+.dot--a { background: #fff; color: var(--cobalt); box-shadow: inset 0 0 0 3px var(--cobalt); }
 .dot--b { background: var(--orange); color: #fff; }
 .photos__note { position: absolute; right: 0; bottom: 0; font-size: 13px; color: var(--ink-3); }
 
