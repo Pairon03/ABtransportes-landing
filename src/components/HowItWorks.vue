@@ -59,14 +59,27 @@ const steps = [
 .step__icon { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; background: var(--sky); color: var(--cobalt); }
 .step p { max-width: 30em; }
 
+/* No celular: número numa coluna à esquerda, texto à direita,
+   e a linha tracejada liga só um número ao próximo. */
 @media (max-width: 820px) {
-  .steps { grid-template-columns: 1fr; gap: 36px; }
-  .steps::before {
-    left: 31px; right: auto; top: 32px; bottom: 32px; width: 4px; height: auto;
-    background-image: linear-gradient(180deg, var(--cobalt) 60%, transparent 0);
-    background-size: 4px 22px; transform: scaleY(0); transform-origin: top;
+  .steps { grid-template-columns: 1fr; gap: 40px; }
+  .steps::before { display: none; }
+  .step {
+    display: grid; grid-template-columns: 66px minmax(0, 1fr);
+    column-gap: 20px; row-gap: 6px; align-items: start;
   }
-  .how--in .steps::before { transform: scaleY(1); }
-  .step { padding-left: 0; }
+  .step__marker { grid-row: 1 / span 2; margin: 0; }
+  .step__icon { display: none; }
+  .step h3, .step p { grid-column: 2; }
+  .step h3 { padding-top: 6px; }
+  .step:not(:last-child)::after {
+    content: ''; position: absolute; left: 31px; top: 74px; bottom: -32px; width: 4px;
+    background-image: linear-gradient(180deg, var(--cobalt) 60%, transparent 0);
+    background-size: 4px 18px;
+    transform: scaleY(0); transform-origin: top;
+    transition: transform .6s var(--ease-out);
+    transition-delay: calc(var(--i) * .45s + .5s);
+  }
+  .how--in .step:not(:last-child)::after { transform: scaleY(1); }
 }
 </style>
