@@ -1,10 +1,10 @@
 <script setup>
-import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
+import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { HERO_VIDEO, waLink } from '../config'
 import { prefersReducedMotion } from '../composables/useInView'
 import AppIcon from './AppIcon.vue'
 
-// Topo "cinema": cenas em tela cheia que se alternam com zoom lento (efeito Ken Burns),
+// Topo "cinema": cenas em tela cheia que se alternam sozinhas com zoom lento (efeito Ken Burns),
 // como um vídeo. Se HERO_VIDEO estiver preenchido em config.js, toca o vídeo no lugar.
 const base = import.meta.env.BASE_URL
 const scenes = [
@@ -36,12 +36,6 @@ function tick(now) {
   raf = requestAnimationFrame(tick)
 }
 
-function show(i) {
-  active.value = i
-  startedAt = 0
-  elapsed.value = 0
-}
-
 const reduced = ref(false)
 onMounted(() => {
   reduced.value = prefersReducedMotion()
@@ -51,7 +45,6 @@ onMounted(() => {
 })
 onBeforeUnmount(() => { cancelAnimationFrame(raf); clearInterval(timer) })
 
-const sceneProgress = computed(() => Math.min(1, elapsed.value / SCENE_MS))
 const seconds = ref(12)
 </script>
 
@@ -136,23 +129,6 @@ const seconds = ref(12)
         </aside>
       </div>
 
-      <!-- seletor de cenas, no estilo "stories" -->
-      <div v-if="!HERO_VIDEO" class="container cinema__scenes">
-        <button
-          v-for="(s, i) in scenes"
-          :key="s.key"
-          type="button"
-          class="scene-btn"
-          :class="{ 'scene-btn--on': i === active }"
-          :aria-pressed="i === active"
-          @click="show(i)"
-        >
-          <span class="scene-btn__track" aria-hidden="true">
-            <span :style="{ width: i === active ? `${(reduced ? 1 : sceneProgress) * 100}%` : (i < active ? '100%' : '0%') }"></span>
-          </span>
-          <span class="scene-btn__label">{{ s.label }}</span>
-        </button>
-      </div>
     </div>
   </section>
 </template>
@@ -188,7 +164,7 @@ const seconds = ref(12)
 }
 @keyframes grain { 0% { transform: translate(0,0) } 25% { transform: translate(-1%,1%) } 50% { transform: translate(1%,-1%) } 75% { transform: translate(-1%,-1%) } }
 
-.cinema__inner { padding-top: clamp(48px, 8vw, 110px); padding-bottom: 28px; }
+.cinema__inner { padding-top: clamp(48px, 8vw, 110px); padding-bottom: clamp(56px, 7vw, 96px); }
 .cinema__grid { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.8fr); gap: 40px; align-items: end; }
 .cinema__copy { display: flex; flex-direction: column; gap: 24px; }
 .cinema__kicker {
@@ -240,13 +216,6 @@ const seconds = ref(12)
 .tstep__bar span { display: block; height: 100%; width: 40%; background: var(--orange); border-radius: 4px; animation: travel 3.6s ease-in-out infinite alternate; }
 @keyframes travel { from { width: 22% } to { width: 78% } }
 
-/* seletor de cenas */
-.cinema__scenes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 40px; }
-.scene-btn { background: none; border: 0; padding: 8px 0; text-align: left; color: #A9A9B2; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer; display: grid; gap: 8px; }
-.scene-btn--on { color: #fff; }
-.scene-btn__track { display: block; height: 3px; border-radius: 3px; background: rgba(255,255,255,.2); overflow: hidden; }
-.scene-btn__track span { display: block; height: 100%; background: #fff; }
-.scene-btn--on .scene-btn__track span { background: var(--orange); }
 
 @media (max-width: 900px) {
   .cinema__grid { grid-template-columns: 1fr; }
