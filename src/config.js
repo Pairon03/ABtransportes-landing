@@ -2,6 +2,10 @@
 // Para trocar o número, altere só aqui (formato: 55 + DDD + número).
 export const PHONE = '5519991148000'
 export const PHONE_LABEL = '(19) 99114-8000'
+// Instagram da empresa (rodapé)
+export const INSTAGRAM = 'https://www.instagram.com/jblog.express/'
+export const INSTAGRAM_HANDLE = '@jblog.express'
+
 export const GREETING = 'Olá! Gostaria de solicitar um orçamento de transporte.'
 
 // Vídeo do topo (opcional). Coloque um .mp4 em public/video/ e informe o caminho,
