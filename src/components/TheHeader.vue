@@ -1,53 +1,73 @@
 <script setup>
+import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { PHONE_LABEL, waLink } from '../config'
+import AppIcon from './AppIcon.vue'
 
 const links = [
-  { href: '#servico', label: 'O serviço' },
-  { href: '#percurso', label: 'O percurso' },
-  { href: '#concierge', label: 'Orçamento' },
+  { href: '#frota', label: 'Frota' },
+  { href: '#fotos', label: 'Registro fotográfico' },
+  { href: '#como-funciona', label: 'Como funciona' },
 ]
+
+// Cabeçalho ganha fundo ao rolar a página
+const scrolled = ref(false)
+const onScroll = () => { scrolled.value = window.scrollY > 12 }
+onMounted(() => { onScroll(); window.addEventListener('scroll', onScroll, { passive: true }) })
+onBeforeUnmount(() => window.removeEventListener('scroll', onScroll))
 </script>
 
 <template>
-  <header class="wrap-x">
-    <div class="container nav">
-      <nav class="nav__links" aria-label="Seções">
-        <a v-for="link in links" :key="link.href" :href="link.href">{{ link.label }}</a>
-      </nav>
-      <a class="brand" href="#topo" aria-label="Ponta a Ponta Brasil Express, início">
-        <span class="brand__name">Ponta a Ponta</span>
-        <span class="brand__sub">Brasil Express</span>
+  <header class="header wrap" :class="{ 'header--scrolled': scrolled }">
+    <div class="container header__inner">
+      <a class="logo" href="#topo" aria-label="Ponta a Ponta Brasil Express, início">
+        <svg class="logo__mark" viewBox="0 0 64 64" aria-hidden="true">
+          <rect width="64" height="64" rx="16" fill="#1F4FFF" />
+          <path d="M16 44C24 44 24 20 32 20s8 24 16 24" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-dasharray="1 8" />
+          <circle cx="16" cy="44" r="6" fill="#fff" />
+          <circle cx="48" cy="44" r="6" fill="#FF6A13" stroke="#fff" stroke-width="3" />
+        </svg>
+        <span class="logo__text">Ponta a Ponta <span>Brasil Express</span></span>
       </a>
-      <div class="nav__cta">
-        <a class="link-phone" :href="waLink()" target="_blank" rel="noopener">{{ PHONE_LABEL }}</a>
-      </div>
+
+      <nav class="nav" aria-label="Seções da página">
+        <a v-for="l in links" :key="l.href" :href="l.href">{{ l.label }}</a>
+      </nav>
+
+      <a class="btn btn--orange header__cta" :href="waLink()" target="_blank" rel="noopener">
+        <AppIcon name="chat" :size="20" />
+        <span class="header__cta-label">{{ PHONE_LABEL }}</span>
+      </a>
     </div>
   </header>
 </template>
 
 <style scoped>
-.nav {
-  padding: 26px 0; display: flex; flex-wrap: wrap; gap: 16px 32px;
-  align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line);
+.header {
+  position: sticky; top: 0; z-index: 30;
+  transition: background-color .3s ease, box-shadow .3s ease;
 }
-.nav__links { flex: 1 1 260px; display: flex; flex-wrap: wrap; gap: 4px 32px; }
-.nav__links a {
-  font-size: 12px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase;
-  text-decoration: none; padding: 12px 0; color: var(--ink-2);
+.header--scrolled {
+  background: rgba(255, 255, 255, 0.86);
+  backdrop-filter: saturate(160%) blur(12px);
+  -webkit-backdrop-filter: saturate(160%) blur(12px);
+  box-shadow: 0 1px 0 var(--line);
 }
-.nav__links a:hover { color: var(--wine); }
-.brand { flex: 0 0 auto; text-decoration: none; display: flex; flex-direction: column; align-items: center; line-height: 1; }
-.brand__name { font-family: var(--serif); font-size: 30px; letter-spacing: 6px; text-transform: uppercase; }
-.brand__sub { font-size: 10px; font-weight: 500; letter-spacing: 7px; text-transform: uppercase; color: var(--wine); margin-top: 6px; }
-.nav__cta { flex: 1 1 260px; display: flex; justify-content: flex-end; }
-.link-phone {
-  font-size: 12px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase;
-  text-decoration: none; padding: 12px 0; border-bottom: 1px solid currentColor;
-}
+.header__inner { display: flex; align-items: center; gap: 24px; min-height: 76px; }
+.logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink); margin-right: auto; }
+.logo__mark { width: 40px; height: 40px; flex: none; }
+.logo__text { font-weight: 800; font-size: 19px; letter-spacing: -0.02em; line-height: 1.05; }
+.logo__text span { display: block; font-weight: 500; font-size: 14px; color: var(--cobalt); letter-spacing: 0; }
+.nav { display: flex; gap: 28px; }
+.nav a { color: var(--ink-2); text-decoration: none; font-weight: 550; font-size: 16px; padding: 10px 0; }
+.nav a:hover { color: var(--cobalt); }
+.header__cta { min-height: 46px; padding: 0 18px; font-size: 15px; box-shadow: 0 4px 0 var(--orange-2); }
 
-@media (max-width: 720px) {
-  .nav { justify-content: center; }
-  .brand { order: -1; flex: 1 1 100%; }
-  .nav__links, .nav__cta { flex: 1 1 100%; justify-content: center; }
+@media (max-width: 880px) {
+  .nav { display: none; }
+}
+@media (max-width: 460px) {
+  .header__cta-label { display: none; }
+  .header__cta { width: 46px; padding: 0; }
+  .header__cta::after { content: 'WhatsApp'; position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 }
 </style>

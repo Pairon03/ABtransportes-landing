@@ -1,13 +1,14 @@
 <script setup>
 import TheHeader from './components/TheHeader.vue'
 import HeroRoute from './components/HeroRoute.vue'
-import ManifestoSection from './components/ManifestoSection.vue'
-import ServicePillars from './components/ServicePillars.vue'
-import ProcessSteps from './components/ProcessSteps.vue'
-import TransparencySection from './components/TransparencySection.vue'
-import QuoteConcierge from './components/QuoteConcierge.vue'
+import FleetSection from './components/FleetSection.vue'
+import PhotoProof from './components/PhotoProof.vue'
+import HowItWorks from './components/HowItWorks.vue'
+import VisibilityBand from './components/VisibilityBand.vue'
+import QuoteWizard from './components/QuoteWizard.vue'
 import FinalCta from './components/FinalCta.vue'
 import TheFooter from './components/TheFooter.vue'
+import WhatsAppFloat from './components/WhatsAppFloat.vue'
 </script>
 
 <template>
@@ -15,12 +16,13 @@ import TheFooter from './components/TheFooter.vue'
   <TheHeader />
   <main id="conteudo">
     <HeroRoute />
-    <ManifestoSection />
-    <ServicePillars />
-    <ProcessSteps />
-    <TransparencySection />
-    <QuoteConcierge />
+    <FleetSection />
+    <PhotoProof />
+    <HowItWorks />
+    <VisibilityBand />
+    <QuoteWizard />
     <FinalCta />
   </main>
   <TheFooter />
+  <WhatsAppFloat />
 </template>
