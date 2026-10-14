@@ -27,7 +27,7 @@ Só falta ativar uma vez:
 2. Em **Build and deployment → Source**, escolha **Deploy from a branch**.
 3. Em **Branch**, escolha **gh-pages** e a pasta **/ (root)**. Clique em **Save**.
 
-Em 1 ou 2 minutos o site fica em `https://pairon03.github.io/ponta-a-ponta-landing/`.
+Em 1 ou 2 minutos o site fica em `https://pairon03.github.io/ABtransportes-landing/`.
 
 ## Estrutura
 
