@@ -37,8 +37,8 @@ export async function fetchCep(cep) {
   }
 }
 
-// Horários de 06:00 a 22:00, de 30 em 30 minutos (06:00, 06:30, 07:00…)
-export const HOURS = Array.from({ length: 33 }, (_, i) => {
-  const h = 6 + Math.floor(i / 2)
+// Horários das 24 horas, de 30 em 30 minutos (00:00, 00:30 … 23:30)
+export const HOURS = Array.from({ length: 48 }, (_, i) => {
+  const h = Math.floor(i / 2)
   return `${String(h).padStart(2, '0')}:${i % 2 ? '30' : '00'}`
 })
