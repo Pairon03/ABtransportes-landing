@@ -1,5 +1,5 @@
 <script setup>
-import { PHONE_LABEL, waLink } from '../config'
+import { INSTAGRAM, INSTAGRAM_HANDLE, PHONE_LABEL, waLink } from '../config'
 import AppIcon from './AppIcon.vue'
 </script>
 
@@ -14,6 +14,9 @@ import AppIcon from './AppIcon.vue'
         <a class="cta__phone" :href="waLink()" target="_blank" rel="noopener">{{ PHONE_LABEL }}</a>
         <a class="btn btn--ink" :href="waLink()" target="_blank" rel="noopener">
           <AppIcon name="chat" :size="20" /> Chamar no WhatsApp
+        </a>
+        <a class="cta__insta" :href="INSTAGRAM" target="_blank" rel="noopener">
+          <AppIcon name="instagram" :size="18" /> Acompanhe a operação em {{ INSTAGRAM_HANDLE }}
         </a>
       </div>
     </div>
@@ -40,6 +43,8 @@ import AppIcon from './AppIcon.vue'
 .cta__text { font-size: 19px; line-height: 1.55; max-width: 30em; }
 .cta__action { display: flex; flex-direction: column; align-items: flex-start; gap: 18px; }
 .cta__phone { white-space: nowrap; font-size: clamp(32px, 4vw, 54px); font-weight: 800; letter-spacing: -0.03em; line-height: 1; color: #fff; text-decoration: none; }
+.cta__insta { display: inline-flex; align-items: center; gap: 8px; color: #fff; font-weight: 600; font-size: 15px; text-decoration: underline; text-decoration-color: rgba(255,255,255,.45); text-underline-offset: 4px; }
+.cta__insta:hover { text-decoration-color: #fff; }
 .cta__phone:hover { text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 6px; }
 
 @media (max-width: 860px) {

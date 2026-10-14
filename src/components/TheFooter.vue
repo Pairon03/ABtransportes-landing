@@ -2,6 +2,9 @@
 import { INSTAGRAM, INSTAGRAM_HANDLE } from '../config'
 import AppIcon from './AppIcon.vue'
 
+import { INSTAGRAM, INSTAGRAM_HANDLE } from '../config'
+import AppIcon from './AppIcon.vue'
+
 const base = import.meta.env.BASE_URL
 const year = new Date().getFullYear()
 </script>
@@ -14,6 +17,10 @@ const year = new Date().getFullYear()
         <p class="footer__name">JBLog Express</p>
         <p class="footer__tagline">Agilidade no transporte. Transparência em cada entrega.</p>
       </div>
+      <a class="footer__insta" :href="INSTAGRAM" target="_blank" rel="noopener" aria-label="Instagram da JBLog Express">
+        <span class="footer__insta-icon"><AppIcon name="instagram" :size="22" /></span>
+        <span><small>Siga no Instagram</small>{{ INSTAGRAM_HANDLE }}</span>
+      </a>
       <a class="insta" :href="INSTAGRAM" target="_blank" rel="noopener" aria-label="Instagram da JBLog Express">
         <span class="insta__icon"><AppIcon name="instagram" :size="22" /></span>
         <span class="insta__text">
@@ -52,6 +59,23 @@ const year = new Date().getFullYear()
 .insta__text small { font-size: 12px; color: var(--ink-3); }
 .insta__text strong { font-size: 16px; font-weight: 700; }
 
+.footer__insta {
+  margin-left: auto; display: inline-flex; align-items: center; gap: 12px;
+  padding: 10px 18px 10px 10px; border-radius: 999px; border: 1px solid var(--line);
+  color: var(--ink); text-decoration: none; font-weight: 700; font-size: 16px;
+  transition: border-color .2s ease, background-color .2s ease;
+}
+.footer__insta small { display: block; font-size: 12px; font-weight: 500; color: var(--ink-3); }
+.footer__insta-icon {
+  display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%; color: #fff;
+  background: linear-gradient(135deg, #F58529, #DD2A7B 50%, #8134AF);
+}
+.footer__insta:hover { border-color: #DD2A7B; background: rgba(221, 42, 123, .08); }
+.footer__insta:focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; }
+@media (max-width: 640px) {
+  .footer__inner { flex-wrap: wrap; }
+  .footer__insta { margin-left: 0; }
+}
 .footer__credits {
   display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px;
   margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--line);
