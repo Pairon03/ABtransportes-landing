@@ -234,7 +234,7 @@ const quoteLink = computed(() => {
 .tab--done { color: var(--cobalt); }
 .tab--current { background: var(--sky); color: var(--ink); font-weight: 700; }
 
-.panel__viewport { overflow: hidden; min-height: 300px; }
+.panel__viewport { overflow: hidden; min-height: 250px; }
 .panel__step { border: 0; margin: 0; padding: 0; min-width: 0; }
 .panel__step legend { padding: 0; margin-bottom: 18px; }
 

@@ -1,6 +1,6 @@
 # Ponta a Ponta Brasil Express — Landing page
 
-Landing page ultrapremium da **Ponta a Ponta Brasil Express**, empresa de coleta e entrega (moto, carro e caminhão), feita em **Vue 3 + Vite**.
+Landing page da **Ponta a Ponta Brasil Express**, empresa de coleta e entrega com moto, carro e caminhão. Feita em **Vue 3 + Vite**, sem dependências além do Vue.
 
 > Sua entrega, do ponto A ao ponto B, com rapidez, segurança e confiança.
 
@@ -15,48 +15,60 @@ npm run build    # gera a versão final na pasta dist/
 npm run preview  # testa a versão final
 ```
 
+## Publicar no GitHub Pages
+
+A cada push na `main`, o workflow `.github/workflows/deploy.yml` gera o build e publica no branch `gh-pages`.
+
+Só falta ativar uma vez:
+
+1. No GitHub, abra **Settings → Pages**.
+2. Em **Build and deployment → Source**, escolha **Deploy from a branch**.
+3. Em **Branch**, escolha **gh-pages** e a pasta **/ (root)**. Clique em **Save**.
+
+Em 1 ou 2 minutos o site fica em `https://pairon03.github.io/ponta-a-ponta-landing/`.
+
 ## Estrutura
 
 ```
 src/
-├── App.vue                     monta a página na ordem das seções
-├── config.js                   número do WhatsApp e geração dos links
-├── assets/main.css             cores, fontes e estilos globais (variáveis no :root)
+├── App.vue                    ordem das seções
+├── config.js                  número do WhatsApp e geração dos links
+├── assets/main.css            cores, fonte, botões e base (variáveis no :root)
+├── composables/useInView.js   dispara animações quando a seção aparece na tela
 └── components/
-    ├── TheHeader.vue           menu, logotipo e telefone
-    ├── HeroRoute.vue           topo com a rota A → B animada
-    ├── ManifestoSection.vue    faixa escura "Precisou transportar?"
-    ├── ServicePillars.vue      os 4 compromissos (lista em data)
-    ├── ProcessSteps.vue        as 3 etapas (lista em data)
-    ├── TransparencySection.vue bloco de transparência
-    ├── QuoteConcierge.vue      formulário de orçamento + prévia ao vivo
-    ├── FinalCta.vue            chamada final com o telefone
-    ├── TheFooter.vue           rodapé
-    └── ArrowIcon.vue           ícone de seta dos botões
+    ├── TheHeader.vue          cabeçalho fixo (ganha fundo ao rolar)
+    ├── HeroRoute.vue          topo: título, botões e destaques
+    ├── RouteAnimation.vue     rota animada de A até B com as etapas acendendo
+    ├── FleetSection.vue       moto, carro e caminhão (fotos em public/img)
+    ├── PhotoProof.vue         registro fotográfico na coleta e na entrega
+    ├── HowItWorks.vue         as 3 etapas com a "estrada" que se desenha
+    ├── VisibilityBand.vue     faixa azul de transparência
+    ├── QuoteWizard.vue        orçamento em etapas, termina no WhatsApp
+    ├── FinalCta.vue           chamada final em laranja
+    ├── TheFooter.vue          rodapé
+    ├── WhatsAppFloat.vue      botão flutuante de WhatsApp
+    └── AppIcon.vue            ícones de traço (prop "name")
 ```
 
-## Formulário de orçamento
+## Animações
 
-`QuoteConcierge.vue` usa `reactive` para os campos e `computed` para:
+- **Rota do topo** (`RouteAnimation.vue`): o traço se desenha, o veículo percorre o caminho com `requestAnimationFrame` e `getPointAtLength`, e as etapas acendem conforme a posição. Ajuste os tempos nas constantes `DRAW`, `TRAVEL` e `HOLD`.
+- **Fotos e etapas**: animam uma única vez, quando a seção entra na tela (`useInView`).
+- **Orçamento**: cada etapa desliza no sentido do avanço e o veículo da barra acompanha.
+- Quem ativou "reduzir movimento" no sistema vê tudo parado no estado final.
 
-- montar a prévia "Sua solicitação" enquanto o cliente digita;
-- calcular o progresso (campos preenchidos / total);
-- gerar o link `wa.me` com a mensagem já formatada.
+## Paleta
 
-Para adicionar ou remover um campo, edite o array `sections` no topo do componente. A prévia, o progresso e a mensagem se ajustam sozinhos (se o campo novo deve aparecer na mensagem, inclua-o também em `rows`).
-
-## Publicar no GitHub Pages
-
-O repositório já tem o workflow `.github/workflows/deploy.yml`, que gera o build e publica a cada push na `main`.
-
-1. No GitHub, abra **Settings → Pages**.
-2. Em **Build and deployment → Source**, escolha **GitHub Actions**.
-3. Rode o workflow de novo (aba **Actions → Publicar no GitHub Pages → Run workflow**) ou faça um novo push.
-
-O site fica em `https://pairon03.github.io/ponta-a-ponta-landing/`.
+| Nome | Cor | Uso |
+| --- | --- | --- |
+| Cobalto | `#1F4FFF` | cor principal, links, faixa azul |
+| Laranja colete | `#FF6A13` | botões de ação e destaques |
+| Sol | `#FFD23F` | detalhes pontuais |
+| Céu | `#EEF4FF` | fundos claros |
+| Tinta | `#0F1E36` | textos |
 
 ## Personalizar
 
-- **WhatsApp:** `PHONE` e `PHONE_LABEL` em `src/config.js` (o número grande do `FinalCta.vue` também está escrito no template).
-- **Cores e fontes:** variáveis no topo de `src/assets/main.css`.
-- **Textos:** direto em cada componente.
+- **WhatsApp:** `PHONE` e `PHONE_LABEL` em `src/config.js`.
+- **Campos do orçamento:** array `steps` no topo de `QuoteWizard.vue`. A revisão e a mensagem se montam a partir de `summary`.
+- **Fotos:** arquivos em `public/img/`. As atuais foram geradas por IA e são ilustrativas. Troque por fotos reais da frota quando tiver.

@@ -31,7 +31,7 @@ import AppIcon from './AppIcon.vue'
 .cta__copy { display: grid; gap: 16px; }
 .cta__text { font-size: 19px; line-height: 1.55; max-width: 30em; }
 .cta__action { display: flex; flex-direction: column; align-items: flex-start; gap: 18px; }
-.cta__phone { font-size: clamp(36px, 4.6vw, 60px); font-weight: 800; letter-spacing: -0.03em; line-height: 1; color: var(--ink); text-decoration: none; }
+.cta__phone { white-space: nowrap; font-size: clamp(32px, 4vw, 54px); font-weight: 800; letter-spacing: -0.03em; line-height: 1; color: var(--ink); text-decoration: none; }
 .cta__phone:hover { text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 6px; }
 
 @media (max-width: 860px) {

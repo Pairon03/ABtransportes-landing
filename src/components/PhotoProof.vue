@@ -52,7 +52,7 @@ const { target, inView } = useInView({ threshold: 0.3 })
   transition: transform .9s var(--ease-out), opacity .9s ease;
   opacity: 0;
 }
-.photo img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 6px; }
+.photo img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 6px; }
 .photo figcaption { display: flex; align-items: center; gap: 10px; padding-top: 12px; font-weight: 700; font-size: 17px; }
 .photo--a { transform: translate(40px, 30px) rotate(0deg); z-index: 1; }
 .photo--b { transform: translate(-40px, 30px) rotate(0deg); margin-top: 56px; z-index: 2; }

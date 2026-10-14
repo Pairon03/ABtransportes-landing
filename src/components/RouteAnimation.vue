@@ -52,7 +52,7 @@ const travelledOffset = computed(() => length * (1 - progress.value))
 
 const stages = computed(() => [
   { key: 'coleta', icon: 'camera', title: 'Coletado', detail: 'Foto registrada na coleta', on: progress.value > 0.001 || drawn.value >= 1 },
-  { key: 'transito', icon: 'pin', title: 'Em trânsito', detail: 'Acompanhamento em tempo real', on: progress.value > 0.12 },
+  { key: 'transito', icon: 'pin', title: 'Em trânsito', detail: 'Tempo real por até 8h', on: progress.value > 0.12 },
   { key: 'entrega', icon: 'check', title: 'Entregue', detail: 'Foto registrada na entrega', on: progress.value >= 0.995 },
 ])
 </script>
@@ -141,6 +141,7 @@ const stages = computed(() => [
   color: var(--ink-3); font-size: 14px; line-height: 1.3;
   transition: background-color .4s ease, color .4s ease, transform .4s var(--ease-out);
 }
+.stage > span:last-child { min-width: 0; overflow-wrap: anywhere; }
 .stage strong { display: block; font-weight: 700; font-size: 15px; }
 .stage__detail { display: block; }
 .stage__icon {
