@@ -1,5 +1,6 @@
 <script setup>
 import AppIcon from './AppIcon.vue'
+import BrandedImg from './BrandedImg.vue'
 import RouteAnimation from './RouteAnimation.vue'
 
 // O quadro visual de cada etapa da jornada. "active" liga as animações daquela etapa.
@@ -32,7 +33,7 @@ const base = import.meta.env.BASE_URL
 
     <!-- 2. coleta com foto -->
     <figure v-else-if="kind === 'coleta'" class="shot">
-      <img :src="base + 'img/coleta.webp'" alt="Caixa lacrada sobre o balcão, fotografada no momento da coleta" loading="lazy" width="928" height="1152">
+      <BrandedImg path="img/coleta.webp" alt="Caixa lacrada sobre o balcão, fotografada no momento da coleta" loading="lazy" width="928" height="1152" />
       <span class="shot__flash" aria-hidden="true"></span>
       <span class="shot__frame" aria-hidden="true"></span>
       <figcaption class="badge"><AppIcon name="camera" :size="18" /> Foto da coleta registrada</figcaption>
