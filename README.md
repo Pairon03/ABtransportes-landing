@@ -72,3 +72,13 @@ src/
 - **WhatsApp:** `PHONE` e `PHONE_LABEL` em `src/config.js`.
 - **Campos do orçamento:** array `steps` no topo de `QuoteWizard.vue`. A revisão e a mensagem se montam a partir de `summary`.
 - **Fotos:** arquivos em `public/img/`. As atuais foram geradas por IA e são ilustrativas. Troque por fotos reais da frota quando tiver.
+
+## Logo nos veículos
+
+A logo que aparece nos caminhões, na van, no baú da moto e na etiqueta da caixa **não está gravada nas fotos**:
+a página desenha o arquivo `public/brand/logo.svg` por cima de cada foto, no lugar e no ângulo de cada veículo.
+
+- **Trocar a logo:** substitua `public/brand/logo.svg` pela logo nova (formato horizontal 3:1, ex.: 360×120). Todas as fotos mudam juntas.
+- **Mudar a posição ou incluir uma foto nova:** edite `src/brand.js`. Cada posição tem três cantos da área da logo
+  (`tl` superior esquerdo, `tr` superior direito, `bl` inferior esquerdo), em pixels da foto original.
+- Para a logo aparecer em outra imagem da página, use `<BrandedImg path="img/arquivo.webp" />` no lugar de `<img>`.

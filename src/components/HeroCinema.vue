@@ -3,6 +3,7 @@ import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { HERO_VIDEO, waLink } from '../config'
 import { prefersReducedMotion } from '../composables/useInView'
 import AppIcon from './AppIcon.vue'
+import BrandedImg from './BrandedImg.vue'
 
 // Topo "cinema": cenas em tela cheia que se alternam sozinhas com zoom lento (efeito Ken Burns),
 // como um vídeo. Se HERO_VIDEO estiver preenchido em config.js, toca o vídeo no lugar.
@@ -62,17 +63,17 @@ const seconds = ref(12)
         playsinline
       ></video>
       <template v-else>
-        <img
+        <BrandedImg
           v-for="(s, i) in scenes"
           :key="s.key"
-          :src="base + s.img"
+          :path="s.img"
           alt=""
           class="cinema__scene"
           :class="{ 'cinema__scene--on': i === active, 'cinema__scene--still': reduced }"
           width="1376"
           height="768"
           :fetchpriority="i === 0 ? 'high' : 'low'"
-        >
+        />
       </template>
       <div class="cinema__shade"></div>
       <div class="cinema__grain"></div>

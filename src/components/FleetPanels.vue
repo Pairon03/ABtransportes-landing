@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import AppIcon from './AppIcon.vue'
+import BrandedImg from './BrandedImg.vue'
 
 // Frota em painéis: o painel escolhido se expande e mostra a descrição.
 const base = import.meta.env.BASE_URL
@@ -32,7 +33,7 @@ const open = ref(0)
           @mouseenter="open = i"
           @focus="open = i"
         >
-          <img :src="base + v.img" alt="" loading="lazy" width="1200" height="896">
+          <BrandedImg :path="v.img" alt="" loading="lazy" width="1200" height="896" />
           <span class="panel__shade" aria-hidden="true"></span>
           <span class="panel__body">
             <span class="panel__name"><AppIcon :name="v.icon" :size="24" />{{ v.name }}</span>
