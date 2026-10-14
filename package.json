@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "Landing page ultrapremium da Ponta a Ponta Brasil Express (Vue 3 + Vite)",
+  "description": "Landing page da JBLog Express (Vue 3 + Vite)",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

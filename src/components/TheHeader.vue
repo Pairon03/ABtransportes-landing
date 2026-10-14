@@ -3,6 +3,8 @@ import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { PHONE_LABEL, waLink } from '../config'
 import AppIcon from './AppIcon.vue'
 
+const base = import.meta.env.BASE_URL
+
 // Cabeçalho ganha fundo ao rolar a página
 const scrolled = ref(false)
 const onScroll = () => { scrolled.value = window.scrollY > 12 }
@@ -13,14 +15,9 @@ onBeforeUnmount(() => window.removeEventListener('scroll', onScroll))
 <template>
   <header class="header wrap" :class="{ 'header--scrolled': scrolled }">
     <div class="container header__inner">
-      <a class="logo" href="#topo" aria-label="Ponta a Ponta Brasil Express, início">
-        <svg class="logo__mark" viewBox="0 0 64 64" aria-hidden="true">
-          <rect width="64" height="64" rx="16" fill="#E3141B" />
-          <path d="M16 44C24 44 24 20 32 20s8 24 16 24" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-dasharray="1 8" />
-          <circle cx="16" cy="44" r="6" fill="#fff" />
-          <circle cx="48" cy="44" r="6" fill="#111111" stroke="#fff" stroke-width="3" />
-        </svg>
-        <span class="logo__text">Ponta a Ponta <span>Brasil Express</span></span>
+      <a class="logo" href="#topo" aria-label="JBLog Express, início">
+        <img class="logo__mark" :src="base + 'brand/logo-160.webp'" alt="" width="52" height="52">
+        <span class="logo__text">JBLog <span>Express</span></span>
       </a>
 
       <a class="btn btn--orange header__cta" :href="waLink()" target="_blank" rel="noopener">
@@ -44,9 +41,9 @@ onBeforeUnmount(() => window.removeEventListener('scroll', onScroll))
 }
 .header__inner { display: flex; align-items: center; gap: 24px; min-height: 76px; }
 .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink); margin-right: auto; }
-.logo__mark { width: 40px; height: 40px; flex: none; }
-.logo__text { font-weight: 800; font-size: 19px; letter-spacing: -0.02em; line-height: 1.05; }
-.logo__text span { display: block; font-weight: 500; font-size: 14px; color: #FF5A60; letter-spacing: 0; }
+.logo__mark { width: 52px; height: 52px; flex: none; border-radius: 50%; }
+.logo__text { font-weight: 800; font-size: 21px; letter-spacing: -0.02em; line-height: 1.05; }
+.logo__text span { display: block; font-weight: 600; font-size: 12px; color: #FF5A60; letter-spacing: .28em; text-transform: uppercase; }
 .header__cta { min-height: 46px; padding: 0 18px; font-size: 15px; box-shadow: 0 4px 0 var(--orange-2); }
 
 @media (max-width: 460px) {

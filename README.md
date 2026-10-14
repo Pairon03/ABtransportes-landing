@@ -1,6 +1,6 @@
-# Ponta a Ponta Brasil Express — Landing page
+# JBLog Express — Landing page
 
-Landing page da **Ponta a Ponta Brasil Express**, empresa de coleta e entrega com moto, carro e caminhão. Feita em **Vue 3 + Vite**, sem dependências além do Vue.
+Landing page da **JBLog Express**, empresa de coleta e entrega com moto, carro e caminhão. Feita em **Vue 3 + Vite**, sem dependências além do Vue.
 
 Uma página, um objetivo: levar o visitante a pedir orçamento pelo WhatsApp. Ordem: topo com a rota animada → diferenciais → como funciona → orçamento → chamada final.
 
@@ -76,9 +76,9 @@ src/
 ## Logo nos veículos
 
 A logo que aparece nos caminhões, na van, no baú da moto e na etiqueta da caixa **não está gravada nas fotos**:
-a página desenha o arquivo `public/brand/logo.svg` por cima de cada foto, no lugar e no ângulo de cada veículo.
+a página desenha o arquivo `public/brand/logo.webp` por cima de cada foto, no lugar e no ângulo de cada veículo.
 
-- **Trocar a logo:** substitua `public/brand/logo.svg` pela logo nova (formato horizontal 3:1, ex.: 360×120). Todas as fotos mudam juntas.
+- **Trocar a logo:** substitua `public/brand/logo.webp` (selo redondo, quadrado, fundo transparente) e as versões menores `logo-160.webp`, `favicon.png` e `apple-touch-icon.png`. Todas as fotos mudam juntas. Se a logo nova não for quadrada, ajuste `LOGO_SIZE` em `src/brand.js`.
 - **Mudar a posição ou incluir uma foto nova:** edite `src/brand.js`. Cada posição tem três cantos da área da logo
   (`tl` superior esquerdo, `tr` superior direito, `bl` inferior esquerdo), em pixels da foto original.
 - Para a logo aparecer em outra imagem da página, use `<BrandedImg path="img/arquivo.webp" />` no lugar de `<img>`.

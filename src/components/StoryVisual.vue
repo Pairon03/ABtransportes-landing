@@ -16,8 +16,8 @@ const base = import.meta.env.BASE_URL
     <!-- 1. pedido pelo WhatsApp -->
     <div v-if="kind === 'pedido'" class="chat" aria-label="Exemplo de mensagem de orçamento pelo WhatsApp">
       <div class="chat__head">
-        <span class="chat__avatar"><AppIcon name="chat" :size="18" /></span>
-        <span><strong>Ponta a Ponta</strong><small>online</small></span>
+        <img class="chat__avatar" :src="base + 'brand/logo-160.webp'" alt="" width="38" height="38">
+        <span><strong>JBLog Express</strong><small>online</small></span>
       </div>
       <div class="chat__body">
         <p class="bubble bubble--me" style="--i: 0">Olá! Gostaria de solicitar um orçamento de transporte.</p>
@@ -63,7 +63,7 @@ const base = import.meta.env.BASE_URL
 .chat__head { display: flex; gap: 12px; align-items: center; padding: 4px 6px 14px; border-bottom: 1px solid #26282C; }
 .chat__head strong { display: block; font-size: 15px; }
 .chat__head small { display: block; font-size: 12px; color: #4ADE80; }
-.chat__avatar { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 50%; background: var(--orange); color: #fff; }
+.chat__avatar { width: 38px; height: 38px; border-radius: 50%; flex: none; }
 .chat__body { display: grid; gap: 10px; padding: 16px 4px 6px; }
 .bubble {
   max-width: 86%; padding: 10px 14px; border-radius: 18px; font-size: 15px; line-height: 1.45;
