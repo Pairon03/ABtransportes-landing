@@ -17,7 +17,7 @@ const base = import.meta.env.BASE_URL
     <div v-if="kind === 'pedido'" class="chat" aria-label="Exemplo de mensagem de orçamento pelo WhatsApp">
       <div class="chat__head">
         <img class="chat__avatar" :src="base + 'brand/logo-160.webp'" alt="" width="38" height="38">
-        <span><strong>JBLog Express</strong><small>online</small></span>
+        <span><strong>AB Transportes</strong><small>online</small></span>
       </div>
       <div class="chat__body">
         <p class="bubble bubble--me" style="--i: 0">Olá! Gostaria de solicitar um orçamento de transporte.</p>

@@ -1,6 +1,6 @@
-# JBLog Express — Landing page
+# AB Transportes — Landing page
 
-Landing page da **JBLog Express**, empresa de coleta e entrega com moto, carro e caminhão. Feita em **Vue 3 + Vite**, sem dependências além do Vue.
+Landing page da **AB Transportes**, empresa de coleta e entrega com moto, carro e caminhão. Feita em **Vue 3 + Vite**, sem dependências além do Vue.
 
 Uma página, um objetivo: levar o visitante a pedir orçamento pelo WhatsApp. Ordem: topo com a rota animada → diferenciais → como funciona → orçamento → chamada final.
 

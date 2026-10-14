@@ -9,12 +9,12 @@ const year = new Date().getFullYear()
 <template>
   <footer class="footer wrap">
     <div class="container footer__inner">
-      <img class="footer__logo" :src="base + 'brand/logo.webp'" alt="Logo da JBLog Express" width="96" height="96" loading="lazy">
+      <img class="footer__logo" :src="base + 'brand/logo.webp'" alt="Logo da AB Transportes" width="96" height="96" loading="lazy">
       <div class="footer__brand">
-        <p class="footer__name">JBLog Express</p>
+        <p class="footer__name">AB Transportes</p>
         <p class="footer__tagline">Agilidade no transporte. Transparência em cada entrega.</p>
       </div>
-      <a class="insta" :href="INSTAGRAM" target="_blank" rel="noopener" aria-label="Instagram da JBLog Express">
+      <a class="insta" :href="INSTAGRAM" target="_blank" rel="noopener" aria-label="Instagram da AB Transportes">
         <span class="insta__icon"><AppIcon name="instagram" :size="22" /></span>
         <span class="insta__text">
           <small>Siga no Instagram</small>
@@ -23,7 +23,7 @@ const year = new Date().getFullYear()
       </a>
     </div>
     <div class="container footer__credits">
-      <span>© {{ year }} JBLog Express</span>
+      <span>© {{ year }} AB Transportes</span>
       <span>Desenvolvido por <strong>Praxis RM</strong></span>
     </div>
   </footer>

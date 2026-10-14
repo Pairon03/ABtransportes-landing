@@ -15,9 +15,9 @@ onBeforeUnmount(() => window.removeEventListener('scroll', onScroll))
 <template>
   <header class="header wrap" :class="{ 'header--scrolled': scrolled }">
     <div class="container header__inner">
-      <a class="logo" href="#topo" aria-label="JBLog Express, início">
+      <a class="logo" href="#topo" aria-label="AB Transportes, início">
         <img class="logo__mark" :src="base + 'brand/logo-160.webp'" alt="" width="52" height="52">
-        <span class="logo__text">JBLog <span>Express</span></span>
+        <span class="logo__text">AB <span>Transportes</span></span>
       </a>
 
       <a class="btn btn--orange header__cta" :href="waLink()" target="_blank" rel="noopener">

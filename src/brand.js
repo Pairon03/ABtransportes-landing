@@ -1,6 +1,6 @@
 // Logo aplicada sobre as fotos dos veículos.
 //
-// O arquivo public/brand/logo.webp (selo redondo da JBLog Express) é desenhado por cima
+// O arquivo public/brand/logo.webp (selo da marca) é desenhado por cima
 // de cada foto, no lugar e no ângulo definidos abaixo. Trocou o arquivo da logo?
 // Todas as fotos mudam juntas.
 //
