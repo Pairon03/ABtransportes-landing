@@ -1,16 +1,16 @@
 /* Ponta a Ponta Brasil Express — tokens e base
-   Paleta preto e vermelho sobre base clara. (--cobalt = preto, --orange = vermelho) */
+   Paleta preto e vermelho sobre base clara. Foco no vermelho: --cobalt e --orange são vermelho; o preto (--ink) fica nos textos e botões secundários. */
 
 :root {
   --paper: #FFFFFF;
-  --sky: #F4F4F5;
-  --sky-2: #E7E7EA;
+  --sky: #FFF2F1;
+  --sky-2: #FFDCD9;
   --ink: #111111;
   --ink-2: #4B4B52;
   --ink-3: #6B6B73;
-  --line: #E2E2E6;
-  --cobalt: #111111;
-  --cobalt-2: #3A3A3F;
+  --line: #F2D8D6;
+  --cobalt: #E3141B;
+  --cobalt-2: #B80F15;
   --orange: #E3141B;
   --orange-2: #9F0D12;
   --sun: #E3141B;
