@@ -37,7 +37,7 @@ onBeforeUnmount(() => window.removeEventListener('scroll', onScroll))
   transition: background-color .3s ease, box-shadow .3s ease;
 }
 .header--scrolled {
-  background: rgba(11, 11, 12, 0.86);
+  background: rgba(43, 45, 49, 0.9);
   backdrop-filter: saturate(160%) blur(12px);
   -webkit-backdrop-filter: saturate(160%) blur(12px);
   box-shadow: 0 1px 0 var(--line);

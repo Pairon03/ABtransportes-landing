@@ -348,8 +348,8 @@ const quoteLink = computed(() => {
   transition: border-color .2s ease, background-color .2s ease;
 }
 .field input::placeholder { color: #85858C; }
-.field input:hover, .hours select:hover { border-color: #3A3A40; }
-.field input:focus, .hours select:focus { outline: none; border-color: var(--cobalt); background: #000; }
+.field input:hover, .hours select:hover { border-color: #5C5F67; }
+.field input:focus, .hours select:focus { outline: none; border-color: var(--cobalt); background: #232529; }
 
 /* horário início e fim */
 .hours { display: flex; gap: 12px; flex-wrap: wrap; }

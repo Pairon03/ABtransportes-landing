@@ -1,15 +1,15 @@
 /* Ponta a Ponta Brasil Express — tokens e base
-   Paleta preto e vermelho sobre base clara. Tema escuro: fundo preto, vermelho como destaque. --ink é a cor do TEXTO (claro); --paper é o fundo. */
+   Paleta preto e vermelho sobre base clara. Tema escuro: fundo chumbo, vermelho como destaque. --ink é a cor do TEXTO (claro); --paper é o fundo. */
 
 :root {
-  --paper: #0B0B0C;
+  --paper: #2B2D31;
   color-scheme: dark;
-  --sky: #161618;
-  --sky-2: #232326;
+  --sky: #34373C;
+  --sky-2: #42454B;
   --ink: #F4F4F5;
   --ink-2: #B4B4BC;
-  --ink-3: #8A8A93;
-  --line: #2C2C30;
+  --ink-3: #A3A5AD;
+  --line: #4B4E55;
   --cobalt: #E3141B;
   --cobalt-2: #B80F15;
   --orange: #E3141B;
