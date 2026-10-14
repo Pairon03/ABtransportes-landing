@@ -1,18 +1,19 @@
 name: Build e publicação
 
 # A cada push na main: instala, gera o build (dist/) e publica no branch gh-pages.
+# Em outros branches (esboços), publica o build em build-<branch>, sem tocar no site.
 # No GitHub: Settings → Pages → Deploy from a branch → gh-pages / (root).
 
 on:
   push:
-    branches: [main]
+    branches-ignore: ['gh-pages', 'build-*']
   workflow_dispatch:
 
 permissions:
   contents: write
 
 concurrency:
-  group: pages
+  group: pages-${{ github.ref_name }}
   cancel-in-progress: true
 
 jobs:
@@ -28,13 +29,14 @@ jobs:
       - run: npm install --no-audit --no-fund
       - run: npm run build
 
-      - name: Publicar dist/ no branch gh-pages
+      - name: Publicar dist/
         run: |
+          if [ "${GITHUB_REF_NAME}" = "main" ]; then TARGET=gh-pages; else TARGET="build-${GITHUB_REF_NAME//\//-}"; fi
           cd dist
           touch .nojekyll
-          git init -q -b gh-pages
+          git init -q -b "$TARGET"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
           git commit -q -m "Build de ${GITHUB_SHA::7}"
-          git push -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" gh-pages
+          git push -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" "$TARGET"

@@ -62,12 +62,12 @@ const stages = computed(() => [
     <svg class="route__map" viewBox="0 0 520 380" aria-hidden="true">
       <defs>
         <pattern id="grid" width="26" height="26" patternUnits="userSpaceOnUse">
-          <path d="M26 0H0V26" fill="none" stroke="#D6E0F0" stroke-width="1" />
+          <path d="M26 0H0V26" fill="none" stroke="#E4E4E7" stroke-width="1" />
         </pattern>
       </defs>
       <rect width="520" height="380" fill="url(#grid)" />
       <!-- quarteirões estilizados -->
-      <g fill="#DCE8FF">
+      <g fill="#ECECEE">
         <rect x="150" y="40" width="96" height="70" rx="10" />
         <rect x="300" y="190" width="120" height="64" rx="10" />
         <rect x="40" y="150" width="70" height="90" rx="10" />
@@ -77,32 +77,32 @@ const stages = computed(() => [
       <!-- trilho cinza da rota inteira -->
       <path
         d="M70 300 C 140 300, 120 190, 210 180 S 320 250, 360 160 S 420 70, 450 80"
-        fill="none" stroke="#C3D2EC" stroke-width="10" stroke-linecap="round"
+        fill="none" stroke="#D4D4D8" stroke-width="10" stroke-linecap="round"
         :stroke-dasharray="length" :stroke-dashoffset="dashOffset"
       />
       <!-- trecho já percorrido -->
       <path
         ref="pathEl"
         d="M70 300 C 140 300, 120 190, 210 180 S 320 250, 360 160 S 420 70, 450 80"
-        fill="none" stroke="#1F4FFF" stroke-width="10" stroke-linecap="round"
+        fill="none" stroke="#111111" stroke-width="10" stroke-linecap="round"
         :stroke-dasharray="length || 1" :stroke-dashoffset="travelledOffset"
       />
 
       <!-- ponto A -->
       <g transform="translate(70 300)">
-        <circle r="22" fill="#fff" stroke="#1F4FFF" stroke-width="4" />
-        <text y="7" text-anchor="middle" font-size="20" font-weight="800" fill="#1F4FFF" font-family="Bricolage Grotesque, sans-serif">A</text>
+        <circle r="22" fill="#fff" stroke="#111111" stroke-width="4" />
+        <text y="7" text-anchor="middle" font-size="20" font-weight="800" fill="#111111" font-family="Bricolage Grotesque, sans-serif">A</text>
       </g>
       <!-- ponto B -->
       <g transform="translate(450 80)">
-        <circle r="26" fill="#FF6A13" opacity=".18" class="route__pulse" />
-        <circle r="22" fill="#FF6A13" />
-        <text y="7" text-anchor="middle" font-size="20" font-weight="800" fill="#0F1E36" font-family="Bricolage Grotesque, sans-serif">B</text>
+        <circle r="26" fill="#E3141B" opacity=".18" class="route__pulse" />
+        <circle r="22" fill="#E3141B" />
+        <text y="7" text-anchor="middle" font-size="20" font-weight="800" fill="#FFFFFF" font-family="Bricolage Grotesque, sans-serif">B</text>
       </g>
 
       <!-- veículo -->
       <g :transform="`translate(${pos.x} ${pos.y})`">
-        <circle r="19" fill="#0F1E36" />
+        <circle r="19" fill="#E3141B" />
         <g transform="translate(-11 -11) scale(.92)" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="5.5" cy="17" r="3" /><circle cx="18.5" cy="17" r="3" />
           <path d="M8.5 17h5l3-6.5h-4.5" /><path d="M5.5 17 9 10.5h4" /><path d="M15.5 6.5H18l1.5 4" />
@@ -127,7 +127,7 @@ const stages = computed(() => [
   position: relative;
   background: #fff;
   border-radius: var(--r-lg);
-  box-shadow: 0 1px 0 var(--line), 0 30px 60px -30px rgba(31, 79, 255, 0.35);
+  box-shadow: 0 1px 0 var(--line), 0 30px 60px -30px rgba(0, 0, 0, 0.22);
   padding: 14px 14px 18px;
 }
 .route__map { width: 100%; height: auto; display: block; border-radius: 22px; background: var(--sky); }
@@ -149,8 +149,8 @@ const stages = computed(() => [
   background: #fff; color: var(--ink-3); transition: background-color .4s ease, color .4s ease;
 }
 .stage--on { background: var(--ink); color: #fff; transform: translateY(-3px); }
-.stage--on .stage__icon { background: var(--sun); color: var(--ink); }
-.stage--on .stage__detail { color: #C9D3E6; }
+.stage--on .stage__icon { background: var(--orange); color: #fff; }
+.stage--on .stage__detail { color: #C8C8CE; }
 
 @media (max-width: 560px) {
   .route__stages { grid-template-columns: 1fr; }

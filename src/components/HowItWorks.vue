@@ -54,7 +54,7 @@ const steps = [
   transition: transform .6s var(--ease-out), opacity .6s ease;
   transition-delay: calc(var(--i) * .45s + .2s);
 }
-.step:last-child .step__num { background: var(--orange); color: var(--ink); box-shadow: none; }
+.step:last-child .step__num { background: var(--orange); color: #fff; box-shadow: none; }
 .how--in .step__num { transform: scale(1); opacity: 1; }
 .step__icon { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; background: var(--sky); color: var(--cobalt); }
 .step p { max-width: 30em; }

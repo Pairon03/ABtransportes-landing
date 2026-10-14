@@ -29,7 +29,7 @@ onBeforeUnmount(() => window.removeEventListener('scroll', onScroll))
   position: fixed; right: 20px; bottom: 20px; z-index: 40;
   display: grid; place-items: center; width: 62px; height: 62px; border-radius: 50%;
   background: var(--cobalt); color: #fff; text-decoration: none;
-  box-shadow: 0 14px 30px -10px rgba(31, 79, 255, 0.7);
+  box-shadow: 0 14px 30px -10px rgba(0, 0, 0, 0.45);
   transform: translateY(100px) scale(.8); opacity: 0;
   transition: transform .4s var(--ease-out), opacity .3s ease, background-color .2s ease;
 }

@@ -15,10 +15,10 @@ onBeforeUnmount(() => window.removeEventListener('scroll', onScroll))
     <div class="container header__inner">
       <a class="logo" href="#topo" aria-label="Ponta a Ponta Brasil Express, início">
         <svg class="logo__mark" viewBox="0 0 64 64" aria-hidden="true">
-          <rect width="64" height="64" rx="16" fill="#1F4FFF" />
+          <rect width="64" height="64" rx="16" fill="#111111" />
           <path d="M16 44C24 44 24 20 32 20s8 24 16 24" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-dasharray="1 8" />
           <circle cx="16" cy="44" r="6" fill="#fff" />
-          <circle cx="48" cy="44" r="6" fill="#FF6A13" stroke="#fff" stroke-width="3" />
+          <circle cx="48" cy="44" r="6" fill="#E3141B" stroke="#fff" stroke-width="3" />
         </svg>
         <span class="logo__text">Ponta a Ponta <span>Brasil Express</span></span>
       </a>
@@ -46,7 +46,7 @@ onBeforeUnmount(() => window.removeEventListener('scroll', onScroll))
 .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink); margin-right: auto; }
 .logo__mark { width: 40px; height: 40px; flex: none; }
 .logo__text { font-weight: 800; font-size: 19px; letter-spacing: -0.02em; line-height: 1.05; }
-.logo__text span { display: block; font-weight: 500; font-size: 14px; color: var(--cobalt); letter-spacing: 0; }
+.logo__text span { display: block; font-weight: 500; font-size: 14px; color: var(--orange); letter-spacing: 0; }
 .header__cta { min-height: 46px; padding: 0 18px; font-size: 15px; box-shadow: 0 4px 0 var(--orange-2); }
 
 @media (max-width: 460px) {

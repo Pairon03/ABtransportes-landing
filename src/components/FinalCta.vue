@@ -24,14 +24,14 @@ import AppIcon from './AppIcon.vue'
 .cta { padding-top: var(--section); padding-bottom: var(--section); }
 .cta__card {
   display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 32px 56px; align-items: center;
-  background: var(--orange); color: var(--ink); border-radius: var(--r-lg);
+  background: var(--orange); color: #fff; border-radius: var(--r-lg);
   padding: clamp(32px, 5vw, 72px);
-  background-image: radial-gradient(circle at 100% 0%, #FF8A45 0, transparent 55%);
+  background-image: radial-gradient(circle at 100% 0%, #F23A40 0, transparent 55%);
 }
 .cta__copy { display: grid; gap: 16px; }
 .cta__text { font-size: 19px; line-height: 1.55; max-width: 30em; }
 .cta__action { display: flex; flex-direction: column; align-items: flex-start; gap: 18px; }
-.cta__phone { white-space: nowrap; font-size: clamp(32px, 4vw, 54px); font-weight: 800; letter-spacing: -0.03em; line-height: 1; color: var(--ink); text-decoration: none; }
+.cta__phone { white-space: nowrap; font-size: clamp(32px, 4vw, 54px); font-weight: 800; letter-spacing: -0.03em; line-height: 1; color: #fff; text-decoration: none; }
 .cta__phone:hover { text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 6px; }
 
 @media (max-width: 860px) {

@@ -1,33 +1,41 @@
 <script setup>
-import { computed, nextTick, reactive, ref } from 'vue'
+import { computed, nextTick, reactive, ref, watch } from 'vue'
 import { GREETING, waLink } from '../config'
+import { HOURS, fetchCep, maskCep, maskCpfCnpj, onlyDigits } from '../composables/masks'
 import AppIcon from './AppIcon.vue'
 
 // Orçamento em etapas. O veículo na barra avança conforme a pessoa preenche.
+// Tipos de campo: text (padrão), date, cep (consulta o endereço), hours (início e fim).
 const steps = [
   {
     key: 'voce', icon: 'user', title: 'Quem está pedindo',
     fields: [
       { key: 'nome', label: 'Nome ou empresa', placeholder: 'Maria Silva ou Empresa X', autocomplete: 'organization' },
-      { key: 'doc', label: 'CPF ou CNPJ', placeholder: 'Somente números', inputmode: 'numeric' },
+      { key: 'doc', label: 'CPF ou CNPJ', placeholder: '000.000.000-00', inputmode: 'numeric', maxlength: 18 },
     ],
   },
   {
     key: 'coleta', icon: 'pin', title: 'Onde coletamos',
     fields: [
-      { key: 'cEnd', label: 'Endereço completo', placeholder: 'Rua, número e bairro', autocomplete: 'street-address', wide: true },
-      { key: 'cCidade', label: 'Cidade', placeholder: 'Campinas' },
-      { key: 'cCep', label: 'CEP', placeholder: '00000-000', inputmode: 'numeric', autocomplete: 'postal-code' },
+      { key: 'cCep', label: 'CEP', type: 'cep', prefix: 'c', placeholder: '00000-000', inputmode: 'numeric', autocomplete: 'postal-code' },
+      { key: 'cNum', label: 'Número', placeholder: '123' },
+      { key: 'cRua', label: 'Rua', placeholder: 'Preenchida pelo CEP', wide: true },
+      { key: 'cBairro', label: 'Bairro', placeholder: 'Preenchido pelo CEP' },
+      { key: 'cCidade', label: 'Cidade', placeholder: 'Preenchida pelo CEP' },
+      { key: 'cCompl', label: 'Complemento (opcional)', placeholder: 'Sala, bloco, referência' },
       { key: 'data', label: 'Data da coleta', type: 'date' },
-      { key: 'cHora', label: 'Horário disponível', placeholder: 'Das 8h às 12h' },
+      { key: 'hora', label: 'Horário disponível', type: 'hours', wide: true },
     ],
   },
   {
     key: 'entrega', icon: 'flag', title: 'Para onde vai',
     fields: [
-      { key: 'eEnd', label: 'Endereço completo', placeholder: 'Rua, número e bairro', wide: true },
-      { key: 'eCidade', label: 'Cidade', placeholder: 'São Paulo' },
-      { key: 'eCep', label: 'CEP', placeholder: '00000-000', inputmode: 'numeric' },
+      { key: 'eCep', label: 'CEP', type: 'cep', prefix: 'e', placeholder: '00000-000', inputmode: 'numeric' },
+      { key: 'eNum', label: 'Número', placeholder: '123' },
+      { key: 'eRua', label: 'Rua', placeholder: 'Preenchida pelo CEP', wide: true },
+      { key: 'eBairro', label: 'Bairro', placeholder: 'Preenchido pelo CEP' },
+      { key: 'eCidade', label: 'Cidade', placeholder: 'Preenchida pelo CEP' },
+      { key: 'eCompl', label: 'Complemento (opcional)', placeholder: 'Sala, bloco, referência', wide: true },
     ],
   },
   {
@@ -46,10 +54,55 @@ const steps = [
   { key: 'revisao', icon: 'check', title: 'Revise e envie' },
 ]
 
-const allFields = steps.flatMap((s) => s.fields || [])
-const form = reactive(Object.fromEntries(allFields.map((f) => [f.key, ''])))
+const textKeys = steps.flatMap((s) => (s.fields || []).filter((f) => f.type !== 'hours').map((f) => f.key))
+const form = reactive({ ...Object.fromEntries(textKeys.map((k) => [k, ''])), horaIni: '', horaFim: '' })
 const choice = reactive({ modalidade: '', fragil: '' })
 
+// --- máscaras
+watch(() => form.doc, (v) => { const m = maskCpfCnpj(v); if (m !== v) form.doc = m })
+
+// --- CEP: ao completar 8 dígitos, consulta e preenche rua, bairro e cidade
+const cepStatus = reactive({ c: '', e: '' })
+const lastCep = { c: '', e: '' }
+const cepMessages = {
+  loading: 'Buscando endereço…',
+  ok: 'Endereço preenchido. Confira e informe o número.',
+  notfound: 'CEP não encontrado. Preencha o endereço manualmente.',
+  error: 'Não foi possível consultar o CEP agora. Preencha o endereço manualmente.',
+}
+
+async function onCep(prefix) {
+  const key = `${prefix}Cep`
+  const masked = maskCep(form[key])
+  if (masked !== form[key]) { form[key] = masked; return }
+  const digits = onlyDigits(masked)
+  if (digits.length !== 8) { cepStatus[prefix] = ''; lastCep[prefix] = ''; return }
+  if (digits === lastCep[prefix]) return
+  lastCep[prefix] = digits
+  cepStatus[prefix] = 'loading'
+  try {
+    const addr = await fetchCep(digits)
+    if (onlyDigits(form[key]) !== digits) return // a pessoa mudou o CEP no meio da consulta
+    if (!addr) { cepStatus[prefix] = 'notfound'; return }
+    form[`${prefix}Rua`] = addr.rua || form[`${prefix}Rua`]
+    form[`${prefix}Bairro`] = addr.bairro || form[`${prefix}Bairro`]
+    form[`${prefix}Cidade`] = addr.cidade || form[`${prefix}Cidade`]
+    cepStatus[prefix] = 'ok'
+    await nextTick()
+    const num = document.getElementById(`q-${prefix}Num`)
+    if (num && !form[`${prefix}Num`]) num.focus()
+  } catch {
+    cepStatus[prefix] = 'error'
+  }
+}
+watch(() => form.cCep, () => onCep('c'))
+watch(() => form.eCep, () => onCep('e'))
+
+// --- horário: o fim só oferece horas depois do início
+const endHours = computed(() => (form.horaIni ? HOURS.filter((h) => h > form.horaIni) : HOURS))
+watch(() => form.horaIni, (ini) => { if (form.horaFim && ini && form.horaFim <= ini) form.horaFim = '' })
+
+// --- navegação entre etapas
 const current = ref(0)
 const direction = ref('next')
 const panel = ref(null)
@@ -62,7 +115,7 @@ async function go(i) {
   direction.value = i > current.value ? 'next' : 'prev'
   current.value = i
   await nextTick()
-  const first = panel.value && panel.value.querySelector('input, button.chip, .review')
+  const first = panel.value && panel.value.querySelector('input, select, button.chip, .review')
   if (first) first.focus({ preventScroll: true })
 }
 
@@ -70,16 +123,30 @@ function toggle(key, value) {
   choice[key] = choice[key] === value ? '' : value
 }
 
+// --- resumo e mensagem do WhatsApp
 const v = (k) => (form[k] || '').trim()
-const join = (parts) => parts.filter(Boolean).join(', ')
+const join = (parts, sep = ', ') => parts.filter(Boolean).join(sep)
 const formatDate = (iso) => (iso ? iso.split('-').reverse().join('/') : '')
+const address = (p) => join([
+  join([v(`${p}Rua`), v(`${p}Num`)]),
+  v(`${p}Compl`),
+  v(`${p}Bairro`),
+  v(`${p}Cidade`),
+  v(`${p}Cep`) && `CEP ${v(`${p}Cep`)}`,
+], ' - ')
+const hoursText = computed(() => {
+  if (form.horaIni && form.horaFim) return `das ${form.horaIni} às ${form.horaFim}`
+  if (form.horaIni) return `a partir das ${form.horaIni}`
+  if (form.horaFim) return `até as ${form.horaFim}`
+  return ''
+})
 
 const summary = computed(() =>
   [
     ['Solicitante', join([v('nome'), v('doc') && `CPF/CNPJ ${v('doc')}`])],
-    ['Coleta', join([v('cEnd'), v('cCidade'), v('cCep') && `CEP ${v('cCep')}`])],
-    ['Quando', join([formatDate(v('data')), v('cHora')])],
-    ['Entrega', join([v('eEnd'), v('eCidade'), v('eCep') && `CEP ${v('eCep')}`])],
+    ['Coleta', address('c')],
+    ['Quando', join([formatDate(v('data')), hoursText.value])],
+    ['Entrega', address('e')],
     ['Carga', join([
       v('peso') && `${v('peso')} kg`,
       v('vol') && `${v('vol')} volume(s)`,
@@ -138,23 +205,55 @@ const quoteLink = computed(() => {
                 <legend class="h-md">{{ step.title }}</legend>
 
                 <div v-if="step.fields" class="fields">
-                  <div v-for="f in step.fields" :key="f.key" class="field" :class="{ 'field--wide': f.wide }">
-                    <label :for="`q-${f.key}`">{{ f.label }}</label>
-                    <input
-                      :id="`q-${f.key}`"
-                      v-model="form[f.key]"
-                      :name="f.key"
-                      :type="f.type || 'text'"
-                      :placeholder="f.placeholder"
-                      :inputmode="f.inputmode"
-                      :autocomplete="f.autocomplete"
-                    >
-                  </div>
+                  <template v-for="f in step.fields" :key="f.key">
+                    <!-- horário: duas caixas de seleção -->
+                    <div v-if="f.type === 'hours'" class="field field--wide" role="group" :aria-label="f.label">
+                      <span class="field__label">{{ f.label }}</span>
+                      <div class="hours">
+                        <label class="hours__item">
+                          <span>Das</span>
+                          <select id="q-horaIni" v-model="form.horaIni" aria-label="Horário inicial">
+                            <option value="">Início</option>
+                            <option v-for="h in HOURS" :key="h" :value="h">{{ h }}</option>
+                          </select>
+                        </label>
+                        <label class="hours__item">
+                          <span>até</span>
+                          <select id="q-horaFim" v-model="form.horaFim" aria-label="Horário final">
+                            <option value="">Fim</option>
+                            <option v-for="h in endHours" :key="h" :value="h">{{ h }}</option>
+                          </select>
+                        </label>
+                      </div>
+                    </div>
+
+                    <div v-else class="field" :class="{ 'field--wide': f.wide, 'field--cep': f.type === 'cep' }">
+                      <label :for="`q-${f.key}`">{{ f.label }}</label>
+                      <input
+                        :id="`q-${f.key}`"
+                        v-model="form[f.key]"
+                        :name="f.key"
+                        :type="f.type === 'date' ? 'date' : 'text'"
+                        :placeholder="f.placeholder"
+                        :inputmode="f.inputmode"
+                        :autocomplete="f.autocomplete"
+                        :maxlength="f.type === 'cep' ? 9 : f.maxlength"
+                        :aria-describedby="f.type === 'cep' ? `q-${f.key}-status` : undefined"
+                      >
+                      <p
+                        v-if="f.type === 'cep'"
+                        :id="`q-${f.key}-status`"
+                        class="cep-status"
+                        :class="`cep-status--${cepStatus[f.prefix]}`"
+                        aria-live="polite"
+                      >{{ cepMessages[cepStatus[f.prefix]] || 'Digite o CEP e preenchemos o endereço.' }}</p>
+                    </div>
+                  </template>
                 </div>
 
                 <div v-if="step.choices" class="choices">
                   <div v-for="c in step.choices" :key="c.key" class="choice" role="group" :aria-label="c.label">
-                    <span class="choice__label">{{ c.label }}</span>
+                    <span class="field__label">{{ c.label }}</span>
                     <div class="chips">
                       <button
                         v-for="opt in c.options"
@@ -210,7 +309,7 @@ const quoteLink = computed(() => {
 
 .wizard {
   background: #fff; border-radius: var(--r-lg); padding: clamp(20px, 3vw, 36px);
-  box-shadow: 0 1px 0 var(--line), 0 40px 80px -40px rgba(31, 79, 255, 0.35);
+  box-shadow: 0 1px 0 var(--line), 0 40px 80px -40px rgba(0, 0, 0, 0.25);
 }
 
 /* rota de progresso */
@@ -220,7 +319,7 @@ const quoteLink = computed(() => {
 .track__vehicle {
   position: absolute; top: 0; transform: translateX(-50%);
   display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%;
-  background: var(--orange); color: var(--ink); box-shadow: 0 0 0 4px #fff;
+  background: var(--orange); color: #fff; box-shadow: 0 0 0 4px #fff;
   transition: left .6s var(--ease-out);
 }
 
@@ -231,7 +330,7 @@ const quoteLink = computed(() => {
   font: inherit; font-size: 13px; line-height: 1.2; color: var(--ink-3); text-align: center;
 }
 .tab:hover { background: var(--sky); color: var(--ink); }
-.tab--done { color: var(--cobalt); }
+.tab--done { color: var(--orange); }
 .tab--current { background: var(--sky); color: var(--ink); font-weight: 700; }
 
 .panel__viewport { overflow: hidden; min-height: 250px; }
@@ -239,21 +338,37 @@ const quoteLink = computed(() => {
 .panel__step legend { padding: 0; margin-bottom: 18px; }
 
 .fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
-.field { display: flex; flex-direction: column; gap: 6px; }
+.field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
 .field--wide { grid-column: 1 / -1; }
-.field label { font-size: 15px; font-weight: 600; color: var(--ink); }
-.field input {
+.field label, .field__label { font-size: 15px; font-weight: 600; color: var(--ink); }
+.field input, .hours select {
   font: inherit; font-size: 17px; color: var(--ink);
   background: var(--sky); border: 2px solid transparent; border-radius: 14px;
   padding: 12px 16px; min-height: 52px; width: 100%;
   transition: border-color .2s ease, background-color .2s ease;
 }
-.field input::placeholder { color: #7F8CA3; }
-.field input:hover { border-color: var(--sky-2); }
-.field input:focus { outline: none; border-color: var(--cobalt); background: #fff; }
+.field input::placeholder { color: #85858C; }
+.field input:hover, .hours select:hover { border-color: var(--sky-2); }
+.field input:focus, .hours select:focus { outline: none; border-color: var(--cobalt); background: #fff; }
+
+/* horário início e fim */
+.hours { display: flex; gap: 12px; flex-wrap: wrap; }
+.hours__item { flex: 1 1 160px; display: flex; align-items: center; gap: 10px; font-size: 15px; color: var(--ink-2); }
+.hours__item span { flex: none; }
+.hours select {
+  appearance: none; -webkit-appearance: none; cursor: pointer; padding-right: 44px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23111111' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 14px center;
+}
+
+/* status da consulta de CEP */
+.cep-status { font-size: 13px; line-height: 1.35; color: var(--ink-3); min-height: 1.35em; }
+.cep-status--loading { color: var(--ink-2); }
+.cep-status--ok { color: #1B7F3B; }
+.cep-status--notfound, .cep-status--error { color: var(--orange-2); }
 
 .choices { display: grid; gap: 18px; margin-top: 22px; }
-.choice__label { display: block; font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+.choice .field__label { display: block; margin-bottom: 8px; }
 .chips { display: flex; flex-wrap: wrap; gap: 10px; }
 .chip {
   display: inline-flex; align-items: center; gap: 6px;
