@@ -102,12 +102,16 @@ async function startScene() {
 function drawRoute() {
   const h = titleEl.value, a = pinA.value, b = pinB.value
   if (!h || !a || !b) return
-  const hr = h.getBoundingClientRect()
-  const ar = a.getBoundingClientRect()
-  const br = b.getBoundingClientRect()
-  const ax = ar.left - hr.left + ar.width / 2, ay = ar.top - hr.top + ar.width * 0.5
-  const bx = br.left - hr.left + br.width / 2, by = br.top - hr.top + br.width * 0.5
-  const room = Math.max(40, Math.min(150, hr.width - bx - 12))
+  // posição de layout (offset*), que ignora as animações em andamento (escala dos pinos, linhas subindo)
+  const pos = (el) => {
+    let x = 0, y = 0, n = el
+    while (n && n !== h) { x += n.offsetLeft; y += n.offsetTop; n = n.offsetParent }
+    return { x, y, w: el.offsetWidth }
+  }
+  const ar = pos(a), br = pos(b)
+  const ax = ar.x + ar.w / 2, ay = ar.y + ar.w * 0.5
+  const bx = br.x + br.w / 2, by = br.y + br.w * 0.5
+  const room = Math.max(40, Math.min(150, h.offsetWidth - bx - 12))
   const c1x = Math.max(ax, bx) + room, c1y = ay - (by - ay) * 0.05
   const c2x = bx + room * 0.9, c2y = by - (by - ay) * 0.75
   routeD.value = `M${ax.toFixed(1)} ${ay.toFixed(1)} C${c1x.toFixed(1)} ${c1y.toFixed(1)} ${c2x.toFixed(1)} ${c2y.toFixed(1)} ${bx.toFixed(1)} ${by.toFixed(1)}`
