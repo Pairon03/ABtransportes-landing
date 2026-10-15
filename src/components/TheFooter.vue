@@ -4,6 +4,7 @@ import AppIcon from './AppIcon.vue'
 
 const base = import.meta.env.BASE_URL
 const year = new Date().getFullYear()
+const DEV_EMAIL = 'cv.korvex@gmail.com'
 </script>
 
 <template>
@@ -28,7 +29,10 @@ const year = new Date().getFullYear()
     </div>
     <div class="container footer__credits">
       <span>© {{ year }} AB Transportes</span>
-      <span>Desenvolvido por <strong>Korvex</strong></span>
+      <span class="footer__dev">
+        Desenvolvido por <strong>Korvex</strong>
+        <a :href="`mailto:${DEV_EMAIL}`">{{ DEV_EMAIL }}</a>
+      </span>
     </div>
   </footer>
 </template>
@@ -65,12 +69,16 @@ const year = new Date().getFullYear()
   font-size: 14px; color: var(--ink-3);
 }
 .footer__credits strong { color: var(--ink); font-weight: 700; }
+.footer__dev { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; text-align: right; }
+.footer__dev a { color: var(--tinta-3); font-size: 13px; text-decoration: none; }
+.footer__dev a:hover { color: var(--tinta); text-decoration: underline; }
 
 @media (max-width: 640px) {
   .footer { padding-bottom: 104px; }
   .footer__brand { flex: 1 1 100%; }
   .footer__logo { width: 72px; height: 72px; }
   .footer__contact { flex-direction: column; }
+  .footer__dev { align-items: flex-start; text-align: left; }
   .insta { width: 100%; }
 }
 </style>
