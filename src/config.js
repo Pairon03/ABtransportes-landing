@@ -1,7 +1,7 @@
 // Dados da empresa usados em toda a página.
 // Para trocar o número, altere só aqui (formato: 55 + DDD + número).
-export const PHONE = '5519991075372'
-export const PHONE_LABEL = '(19) 99107-5372'
+export const PHONE = '5519991148000'
+export const PHONE_LABEL = '(19) 99114-8000'
 export const EMAIL = 'contato.abtransportess@gmail.com'
 // Instagram da empresa (rodapé)
 export const INSTAGRAM = 'https://www.instagram.com/ab.transportes_/'
