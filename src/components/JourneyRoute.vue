@@ -121,7 +121,7 @@ onBeforeUnmount(() => { st && st.kill(); ro && ro.disconnect() })
 .journey__head { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 24px 64px; align-items: end; margin-bottom: clamp(48px, 7vw, 96px); }
 .journey__head .lead { justify-self: end; }
 
-.journey__body { position: relative; display: grid; grid-template-columns: 76px minmax(0, 1fr); column-gap: clamp(20px, 3vw, 44px); }
+.journey__body { position: relative; display: grid; grid-template-columns: 76px minmax(0, 1fr); column-gap: 96px; }
 
 /* estrada vertical */
 .rail { position: relative; }
@@ -159,7 +159,7 @@ onBeforeUnmount(() => { st && st.kill(); ro && ro.disconnect() })
   gap: 28px clamp(32px, 5vw, 72px); align-items: start; min-height: 46vh;
 }
 .stop__pin {
-  position: absolute; left: calc(-38px - clamp(20px, 3vw, 44px) - 17px); top: 17px;
+  position: absolute; left: calc(-38px - 96px - 17px); top: 17px;
   width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center;
   background: #2A2C30; color: var(--tinta-3); box-shadow: 0 0 0 3px #202125, inset 0 0 0 2px var(--linha);
   transition: background-color .35s ease, color .35s ease, box-shadow .35s ease, transform .35s var(--ease-out);

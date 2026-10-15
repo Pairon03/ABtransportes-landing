@@ -97,7 +97,7 @@ const done = computed(() => len.value * (1 - t.value))
         <circle r="22" fill="#E3141B" opacity=".22" />
         <g :transform="`rotate(${pos.a})`">
           <circle r="13" fill="#E3141B" stroke="#fff" stroke-width="3" />
-          <path d="M-4 -5 L5 0 L-4 5 Z" fill="#fff" />
+          <path d="M-5 -6 L7 0 L-5 6 L-2 0 Z" fill="#fff" />
         </g>
       </g>
     </svg>

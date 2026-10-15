@@ -6,6 +6,7 @@ import { gsap, reducedMotion } from '../composables/motion'
 // Ela anda conforme a rolagem, como se a página fosse a estrada.
 const base = import.meta.env.BASE_URL
 const words = ['Mesmo dia', 'Tempo real', 'Foto na coleta', 'Foto na entrega', 'Moto', 'Carro', 'Caminhão']
+const surface = `linear-gradient(180deg, rgba(0, 0, 0, .45), rgba(0, 0, 0, 0) 22%, rgba(0, 0, 0, 0) 78%, rgba(0, 0, 0, .5)), url(${base}img/v3/asfalto.webp)`
 
 const band = ref(null)
 const track = ref(null)
@@ -23,11 +24,11 @@ onBeforeUnmount(() => { tween && tween.scrollTrigger && tween.scrollTrigger.kill
 </script>
 
 <template>
-  <div ref="band" class="road" :style="{ '--asfalto-img': `url(${base}img/v3/asfalto.webp)` }">
+  <div ref="band" class="road">
     <ul class="sr-only" aria-label="Destaques do serviço">
       <li v-for="w in words" :key="w">{{ w }}</li>
     </ul>
-    <div class="road__surface" aria-hidden="true">
+    <div class="road__surface" aria-hidden="true" :style="{ backgroundImage: surface }">
       <span class="road__edge road__edge--top"></span>
       <span class="road__edge road__edge--bottom"></span>
       <div ref="track" class="road__track">
@@ -48,9 +49,6 @@ onBeforeUnmount(() => { tween && tween.scrollTrigger && tween.scrollTrigger.kill
   position: relative; overflow: hidden;
   height: clamp(150px, 15vw, 210px);
   background-color: #232427;
-  background-image:
-    linear-gradient(180deg, rgba(0, 0, 0, .45), rgba(0, 0, 0, 0) 22%, rgba(0, 0, 0, 0) 78%, rgba(0, 0, 0, .5)),
-    var(--asfalto-img);
   background-size: auto, auto 100%;
   background-repeat: no-repeat, repeat-x;
   box-shadow: 0 -1px 0 rgba(255, 255, 255, .05), 0 30px 60px -30px rgba(0, 0, 0, .7);

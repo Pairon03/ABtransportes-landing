@@ -60,6 +60,7 @@ const year = new Date().getFullYear()
 .footer__credits strong { color: var(--ink); font-weight: 700; }
 
 @media (max-width: 640px) {
+  .footer { padding-bottom: 104px; }
   .footer__brand { flex: 1 1 200px; }
   .insta { width: 100%; }
 }

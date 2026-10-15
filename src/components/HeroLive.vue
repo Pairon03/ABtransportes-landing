@@ -40,13 +40,13 @@ function computeFraming(w, h) {
   let s, ox, oy
   if (!mobile) {
     const cover = Math.max(w / SRC.w, h / SRC.h)
-    const fitTruck = (w * 0.5) / (TRUCK.x1 - TRUCK.x0)
+    const fitTruck = (w * 0.47) / (TRUCK.x1 - TRUCK.x0)
     s = Math.max(Math.min(cover, fitTruck), w / SRC.w)
     const visW = w / s, visH = h / s
-    ox = Math.min(Math.max(TRUCK.x1 - visW * 0.95, 0), SRC.w - visW)
+    ox = Math.min(Math.max(TRUCK.x1 - visW * 0.965, 0), SRC.w - visW)
     oy = visH >= SRC.h ? SRC.h - visH : (SRC.h - visH) * 0.55
   } else {
-    s = (w * 0.96) / (TRUCK.x1 - TRUCK.x0)
+    s = (w * 0.9) / (TRUCK.x1 - TRUCK.x0)
     const visW = w / s, visH = h / s
     ox = (TRUCK.x0 + TRUCK.x1) / 2 - visW / 2
     oy = SRC.h - 120 - visH
@@ -91,7 +91,7 @@ async function startScene() {
     loadImage(base + 'img/v3/hero-light.webp'),
   ])
   scene = createRoadScene(canvas.value, { base: baseImg, plate, alpha, light }, {
-    src: SRC, vp: VP, speed: 0.42, skyTop: [0.11, 0.115, 0.13],
+    src: SRC, vp: VP, speed: 0.34, skyTop: [0.11, 0.115, 0.13],
   })
   layout()
   scene.render(0, framing, 0)
@@ -187,7 +187,7 @@ onBeforeUnmount(() => {
           <div class="hero__actions">
             <a class="btn btn--red" href="#orcamento">Pedir orçamento</a>
             <a class="btn btn--glass" :href="waLink()" target="_blank" rel="noopener">
-              <AppIcon name="chat" :size="22" /> Falar no WhatsApp
+              <AppIcon name="chat" :size="22" /> <span><span class="hide-sm">Falar no </span>WhatsApp</span>
             </a>
           </div>
         </div>
@@ -219,7 +219,7 @@ onBeforeUnmount(() => {
 
 .hero__inner { flex: 1; display: flex; align-items: center; padding-top: calc(var(--header-h) + 24px); padding-bottom: 72px; }
 .hero__inner .container { width: 100%; }
-.hero__copy { max-width: 640px; display: flex; flex-direction: column; gap: 26px; }
+.hero__copy { max-width: 600px; display: flex; flex-direction: column; gap: 26px; }
 
 .hero__title { position: relative; font-size: clamp(60px, 7.6vw, 124px); color: var(--tinta); }
 .hero__line { display: block; position: relative; z-index: 1; }
@@ -240,7 +240,7 @@ onBeforeUnmount(() => {
 }
 .pin--b .pin__letter { color: var(--vermelho); }
 
-.hero__lead { font-size: clamp(19px, 1.45vw, 21px); line-height: 1.55; color: #D9D8D3; max-width: 31em; }
+.hero__lead { font-size: clamp(18px, 1.45vw, 21px); line-height: 1.55; color: #D9D8D3; max-width: 26em; }
 .hero__actions { display: flex; flex-wrap: wrap; gap: 14px; }
 .hero__stage { display: none; }
 
@@ -249,12 +249,14 @@ onBeforeUnmount(() => {
   .hero__inner { flex: none; align-items: flex-start; padding-top: calc(var(--header-h) + 28px); padding-bottom: 12px; }
   .hero__copy { gap: 20px; }
   .hero__title { font-size: clamp(54px, 15vw, 88px); }
-  .hero__stage { display: block; flex: 1; min-height: 72vw; }
+  .hero__stage { display: block; flex: 1; min-height: 70vw; }
   .hero__shade {
     background:
       linear-gradient(180deg, rgba(18, 19, 22, 0.7) 0%, rgba(18, 19, 22, 0.35) 45%, rgba(18, 19, 22, 0) 62%),
       linear-gradient(0deg, var(--asfalto) 0%, rgba(42, 44, 48, 0) 14%);
   }
-  .hero__actions .btn { flex: 1 1 220px; }
+  .hero__actions { flex-wrap: nowrap; gap: 10px; }
+  .hero__actions .btn { flex: 1 1 0; padding: 0 14px; font-size: 19px; }
+  .hide-sm { display: none; }
 }
 </style>
