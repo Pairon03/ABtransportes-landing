@@ -1,7 +1,7 @@
 {
   "name": "abtransportes-landing",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.1.0",
   "type": "module",
   "description": "Landing page da AB Transportes (Vue 3 + Vite)",
   "scripts": {
@@ -10,6 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fontsource/barlow": "^5.1.0",
+    "@fontsource/barlow-condensed": "^5.1.0",
+    "gsap": "^3.13.0",
+    "lenis": "^1.3.0",
     "vue": "^3.5.13"
   },
   "devDependencies": {

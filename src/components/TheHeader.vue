@@ -10,6 +10,12 @@ const scrolled = ref(false)
 const onScroll = () => { scrolled.value = window.scrollY > 12 }
 onMounted(() => { onScroll(); window.addEventListener('scroll', onScroll, { passive: true }) })
 onBeforeUnmount(() => window.removeEventListener('scroll', onScroll))
+
+const links = [
+  { href: '#como-funciona', label: 'Como funciona' },
+  { href: '#frota', label: 'Frota' },
+  { href: '#orcamento', label: 'Orçamento' },
+]
 </script>
 
 <template>
@@ -20,7 +26,11 @@ onBeforeUnmount(() => window.removeEventListener('scroll', onScroll))
         <span class="logo__text">AB <span>Transportes</span></span>
       </a>
 
-      <a class="btn btn--orange header__cta" :href="waLink()" target="_blank" rel="noopener">
+      <nav class="nav" aria-label="Seções">
+        <a v-for="l in links" :key="l.href" :href="l.href">{{ l.label }}</a>
+      </nav>
+
+      <a class="btn btn--red header__cta" :href="waLink()" target="_blank" rel="noopener">
         <AppIcon name="chat" :size="20" />
         <span class="header__cta-label">{{ PHONE_LABEL }}</span>
       </a>
@@ -30,25 +40,40 @@ onBeforeUnmount(() => window.removeEventListener('scroll', onScroll))
 
 <style scoped>
 .header {
-  position: sticky; top: 0; z-index: 30;
+  position: sticky; top: 0; z-index: 30; height: var(--header-h);
   transition: background-color .3s ease, box-shadow .3s ease;
 }
 .header--scrolled {
-  background: rgba(43, 45, 49, 0.9);
+  background: rgba(28, 29, 32, 0.88);
   backdrop-filter: saturate(160%) blur(12px);
   -webkit-backdrop-filter: saturate(160%) blur(12px);
-  box-shadow: 0 1px 0 var(--line);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .08);
 }
-.header__inner { display: flex; align-items: center; gap: 24px; min-height: 76px; }
-.logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink); margin-right: auto; }
-.logo__mark { width: 52px; height: 52px; flex: none; border-radius: 50%; }
-.logo__text { font-weight: 800; font-size: 21px; letter-spacing: -0.02em; line-height: 1.05; }
-.logo__text span { display: block; font-weight: 600; font-size: 12px; color: #FF5A60; letter-spacing: .28em; text-transform: uppercase; }
-.header__cta { min-height: 46px; padding: 0 18px; font-size: 15px; box-shadow: 0 4px 0 var(--orange-2); }
+.header__inner { display: flex; align-items: center; gap: 28px; height: 100%; }
+.logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--tinta); margin-right: auto; }
+.logo__mark { width: 50px; height: 50px; flex: none; border-radius: 50%; }
+.logo__text {
+  font-family: var(--font-display); font-style: italic; font-weight: 800;
+  font-size: 26px; line-height: .9; letter-spacing: 0;
+}
+.logo__text span {
+  display: block; font-weight: 700; font-size: 13px; color: var(--vermelho-claro);
+  letter-spacing: .3em; text-transform: uppercase; font-style: italic;
+}
+.nav { display: flex; gap: 26px; }
+.nav a {
+  color: #E2E1DC; text-decoration: none; font-size: 16px; font-weight: 500;
+  padding: 6px 0; background: linear-gradient(var(--vermelho), var(--vermelho)) 0 100% / 0 2px no-repeat;
+  transition: background-size .3s var(--ease-out), color .2s ease;
+}
+.nav a:hover { color: #fff; background-size: 100% 2px; }
+.header__cta { min-height: 46px; padding: 0 18px; font-size: 18px; box-shadow: 0 4px 0 var(--vinho); }
 
+@media (max-width: 980px) {
+  .nav { display: none; }
+}
 @media (max-width: 460px) {
-  .header__cta-label { display: none; }
+  .header__cta-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
   .header__cta { width: 46px; padding: 0; }
-  .header__cta::after { content: 'WhatsApp'; position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 }
 </style>

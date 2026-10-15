@@ -30,11 +30,11 @@ const year = new Date().getFullYear()
 </template>
 
 <style scoped>
-.footer { background: var(--sky); padding-top: 40px; padding-bottom: 48px; border-top: 1px solid var(--line); }
+.footer { background: var(--noite); padding-top: 40px; padding-bottom: 48px; border-top: 1px solid rgba(255, 255, 255, .06); }
 .footer__inner { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
 .footer__brand { margin-right: auto; }
 .footer__logo { width: 96px; height: 96px; border-radius: 50%; flex: none; }
-.footer__name { font-weight: 800; font-size: 20px; letter-spacing: -0.01em; }
+.footer__name { font-family: var(--font-display); font-style: italic; font-weight: 800; font-size: 28px; line-height: 1; }
 .footer__tagline { color: var(--ink-2); }
 
 .insta {

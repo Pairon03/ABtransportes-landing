@@ -1,53 +1,48 @@
 <script setup>
-import { INSTAGRAM, INSTAGRAM_HANDLE, PHONE_LABEL, waLink } from '../config'
+import { PHONE_LABEL, waLink } from '../config'
 import AppIcon from './AppIcon.vue'
+import BrandedImg from './BrandedImg.vue'
 </script>
 
 <template>
-  <section class="cta wrap">
-    <div class="container cta__card">
+  <section class="cta section wrap">
+    <div class="container cta__grid">
       <div class="cta__copy">
-        <h2 class="h-lg">Sua necessidade é nossa prioridade.</h2>
-        <p class="cta__text">Fale agora com a nossa equipe e vamos encontrar a melhor solução para a sua entrega.</p>
+        <h2 class="display h-lg">Sua necessidade é nossa prioridade.</h2>
+        <p class="lead">Fale agora com a nossa equipe e vamos encontrar a melhor solução para a sua entrega.</p>
+        <a class="cta__phone num" :href="waLink()" target="_blank" rel="noopener">{{ PHONE_LABEL }}</a>
+        <div class="cta__actions">
+          <a class="btn btn--red" :href="waLink()" target="_blank" rel="noopener">
+            <AppIcon name="chat" :size="22" /> Chamar no WhatsApp
+          </a>
+          <a class="btn btn--ghost" href="#orcamento">Pedir orçamento</a>
+        </div>
       </div>
-      <div class="cta__action">
-        <a class="cta__phone" :href="waLink()" target="_blank" rel="noopener">{{ PHONE_LABEL }}</a>
-        <a class="btn btn--ink" :href="waLink()" target="_blank" rel="noopener">
-          <AppIcon name="chat" :size="20" /> Chamar no WhatsApp
-        </a>
-        <a class="cta__insta" :href="INSTAGRAM" target="_blank" rel="noopener">
-          <AppIcon name="instagram" :size="18" /> Acompanhe a operação em {{ INSTAGRAM_HANDLE }}
-        </a>
-      </div>
+      <figure class="cta__photo">
+        <BrandedImg path="img/v3/traseira.webp" alt="Traseira do caminhão da AB com a logo nas portas, lanternas acesas na doca" width="1376" height="768" loading="lazy" />
+      </figure>
     </div>
   </section>
 </template>
 
 <style scoped>
-.cta { padding-top: var(--section); padding-bottom: var(--section); }
-.cta__card {
-  position: relative; overflow: hidden;
-  display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 32px 56px; align-items: center;
-  background: var(--orange); color: #fff; border-radius: var(--r-lg);
-  padding: clamp(32px, 5vw, 72px);
-  background-image: radial-gradient(circle at 100% 0%, #F23A40 0, transparent 55%);
+.cta { background: linear-gradient(180deg, var(--asfalto) 0%, var(--noite) 100%); }
+.cta__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: clamp(32px, 5vw, 80px); align-items: center; }
+.cta__copy { display: flex; flex-direction: column; gap: 22px; align-items: flex-start; }
+.cta__phone {
+  font-family: var(--font-display); font-weight: 800; font-style: italic;
+  font-size: clamp(44px, 5vw, 72px); line-height: 1; color: var(--vermelho-claro); text-decoration: none;
 }
-/* faixa de pista correndo no rodapé do cartão */
-.cta__card::after {
-  content: ''; position: absolute; left: 0; right: 0; bottom: 22px; height: 5px;
-  background-image: linear-gradient(90deg, rgba(255,255,255,.35) 55%, transparent 0);
-  background-size: 70px 5px; animation: road 1.6s linear infinite;
-}
-@keyframes road { to { background-position: -70px 0; } }
-.cta__copy { display: grid; gap: 16px; }
-.cta__text { font-size: 19px; line-height: 1.55; max-width: 30em; }
-.cta__action { display: flex; flex-direction: column; align-items: flex-start; gap: 18px; }
-.cta__phone { white-space: nowrap; font-size: clamp(32px, 4vw, 54px); font-weight: 800; letter-spacing: -0.03em; line-height: 1; color: #fff; text-decoration: none; }
-.cta__insta { display: inline-flex; align-items: center; gap: 8px; color: #fff; font-weight: 600; font-size: 15px; text-decoration: underline; text-decoration-color: rgba(255,255,255,.45); text-underline-offset: 4px; }
-.cta__insta:hover { text-decoration-color: #fff; }
-.cta__phone:hover { text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 6px; }
+.cta__phone:hover { text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 8px; }
+.cta__actions { display: flex; flex-wrap: wrap; gap: 14px; }
+.cta__photo { position: relative; border-radius: 18px; overflow: hidden; aspect-ratio: 4 / 3.1; background: #0E0F11; box-shadow: 0 50px 100px -50px rgba(227, 20, 27, .45); }
+.cta__photo :deep(img) { width: 100%; height: 100%; object-fit: cover; object-position: 50% 42%; }
 
-@media (max-width: 860px) {
-  .cta__card { grid-template-columns: 1fr; }
+@media (max-width: 900px) {
+  .cta__grid { grid-template-columns: 1fr; }
+  .cta__photo { order: -1; }
+}
+@media (max-width: 460px) {
+  .cta__actions .btn { flex: 1 1 100%; }
 }
 </style>
