@@ -3,8 +3,8 @@
 export const PHONE = '5519991148000'
 export const PHONE_LABEL = '(19) 99114-8000'
 // Instagram da empresa (rodapé)
-export const INSTAGRAM = 'https://www.instagram.com/jblog.express/'
-export const INSTAGRAM_HANDLE = '@jblog.express'
+export const INSTAGRAM = 'https://www.instagram.com/ab.transportes_/'
+export const INSTAGRAM_HANDLE = '@ab.transportes_'
 
 export const GREETING = 'Olá! Gostaria de solicitar um orçamento de transporte.'
 
