@@ -1,5 +1,6 @@
 <script setup>
 import { computed, ref } from 'vue'
+import { waLink } from '../config'
 import AppIcon from './AppIcon.vue'
 import BrandedImg from './BrandedImg.vue'
 
@@ -56,6 +57,9 @@ function onKey(e) {
             <span class="picker__cargo">{{ v.cargo }}</span>
             <span class="picker__vehicle">{{ v.name }}</span>
           </button>
+          <p class="picker__hint">
+            Não sabe qual escolher? <a :href="waLink('Olá! Preciso de ajuda para escolher o veículo para a minha carga.')" target="_blank" rel="noopener">Conte o que precisa levar</a> e a gente indica.
+          </p>
         </div>
 
         <figure class="bay" :style="{ '--dir': dir }">
@@ -87,7 +91,8 @@ function onKey(e) {
 </template>
 
 <style scoped>
-.fleet__head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px 64px; align-items: end; margin-bottom: clamp(32px, 5vw, 56px); }
+.fleet { padding-top: clamp(72px, 7vw, 104px); }
+.fleet__head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px 64px; align-items: end; margin-bottom: clamp(24px, 3vw, 40px); }
 .fleet__head .lead { justify-self: end; }
 
 .fleet__body { display: grid; grid-template-columns: minmax(250px, 0.42fr) minmax(0, 1fr); gap: clamp(20px, 3vw, 36px); align-items: stretch; }
@@ -110,12 +115,14 @@ function onKey(e) {
 .picker__opt[aria-checked='true'] { background: var(--tinta); color: #3A3B40; box-shadow: none; }
 .picker__opt[aria-checked='true'] .picker__vehicle { color: #16171A; }
 .picker__opt[aria-checked='true'] .picker__icon { background: var(--vermelho); color: #fff; }
+.picker__hint { margin-top: 10px; font-size: 15px; color: var(--tinta-3); }
+.picker__hint a { color: var(--tinta); font-weight: 600; }
 
 /* galpão */
 .bay { position: relative; display: grid; border-radius: 18px; overflow: hidden; background: #111214; isolation: isolate; }
-.bay__frame { grid-area: 1 / 1; position: relative; aspect-ratio: 1264 / 848; overflow: hidden; }
+.bay__frame { grid-area: 1 / 1; position: relative; aspect-ratio: 16 / 10; overflow: hidden; }
 .bay__img {
-  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 62%;
   opacity: 0; transform: translateX(calc(var(--dir) * 7%)) scale(1.02);
   transition: opacity .55s ease, transform .9s var(--ease-out);
 }
@@ -141,6 +148,7 @@ function onKey(e) {
   .fleet__head, .fleet__body { grid-template-columns: 1fr; }
   .fleet__head .lead { justify-self: start; }
   .picker { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .picker__hint { grid-column: 1 / -1; }
   .picker__opt { grid-template-columns: 1fr; grid-template-rows: auto; row-gap: 8px; justify-items: start; }
   .picker__icon { grid-row: auto; width: 40px; height: 40px; }
   .bay__caption { grid-template-columns: 1fr; }
