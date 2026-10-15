@@ -95,9 +95,9 @@ const done = computed(() => len.value * (1 - t.value))
       <!-- veículo -->
       <g :transform="`translate(${pos.x} ${pos.y})`">
         <circle r="22" fill="#E3141B" opacity=".22" />
-        <g :transform="`rotate(${pos.a})`">
-          <circle r="13" fill="#E3141B" stroke="#fff" stroke-width="3" />
-          <path d="M-5 -6 L7 0 L-5 6 L-2 0 Z" fill="#fff" />
+        <circle r="15" fill="#E3141B" stroke="#fff" stroke-width="3" />
+        <g transform="translate(-8.6 -9.4) scale(.72)" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M2 6.5h12v10H2z" /><path d="M14 9.5h4.2l3.3 3.6v3.4H14" /><circle cx="6" cy="17.5" r="2" /><circle cx="17.5" cy="17.5" r="2" />
         </g>
       </g>
     </svg>

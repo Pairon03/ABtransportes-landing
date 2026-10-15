@@ -70,8 +70,13 @@ void main() {
   col = mix(col, base, a);
 
   if (p.y < 0.0) {
-    vec3 top = texture2D(uBase, vec2(uv.x, 0.001)).rgb;
-    col = mix(top, uSkyTop, smoothstep(0.0, 520.0, -p.y));
+    // céu acima da foto: média larga da primeira faixa da imagem, escurecendo para cima
+    vec3 top = vec3(0.0);
+    for (int i = -5; i <= 5; i++) {
+      top += texture2D(uBase, vec2((p.x + float(i) * 26.0) / uSrc.x, 10.0 / uSrc.y)).rgb;
+    }
+    top /= 11.0;
+    col = mix(top, uSkyTop, smoothstep(0.0, 420.0, -p.y));
   }
 
   float g = hash(frag + fract(uTime * 7.0) * 91.0) - 0.5;
