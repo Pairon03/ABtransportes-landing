@@ -1,5 +1,5 @@
 <script setup>
-import { INSTAGRAM, INSTAGRAM_HANDLE } from '../config'
+import { EMAIL, INSTAGRAM, INSTAGRAM_HANDLE, PHONE_LABEL, waLink } from '../config'
 import AppIcon from './AppIcon.vue'
 
 const base = import.meta.env.BASE_URL
@@ -13,6 +13,10 @@ const year = new Date().getFullYear()
       <div class="footer__brand">
         <p class="footer__name">AB Transportes</p>
         <p class="footer__tagline">Agilidade no transporte. Transparência em cada entrega.</p>
+        <p class="footer__contact">
+          <a :href="waLink()" target="_blank" rel="noopener">{{ PHONE_LABEL }}</a>
+          <a :href="`mailto:${EMAIL}`">{{ EMAIL }}</a>
+        </p>
       </div>
       <a class="insta" :href="INSTAGRAM" target="_blank" rel="noopener" aria-label="Instagram da AB Transportes">
         <span class="insta__icon"><AppIcon name="instagram" :size="22" /></span>
@@ -36,6 +40,9 @@ const year = new Date().getFullYear()
 .footer__logo { width: 96px; height: 96px; border-radius: 50%; flex: none; }
 .footer__name { font-family: var(--font-display); font-style: italic; font-weight: 800; font-size: 28px; line-height: 1; }
 .footer__tagline { color: var(--ink-2); }
+.footer__contact { display: flex; flex-wrap: wrap; gap: 4px 20px; margin-top: 8px; font-size: 16px; }
+.footer__contact a { color: var(--tinta); text-decoration: none; font-weight: 600; overflow-wrap: anywhere; }
+.footer__contact a:hover { color: var(--vermelho-claro); text-decoration: underline; }
 
 .insta {
   display: inline-flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink);

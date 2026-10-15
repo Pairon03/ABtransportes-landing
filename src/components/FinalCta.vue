@@ -1,5 +1,5 @@
 <script setup>
-import { PHONE_LABEL, waLink } from '../config'
+import { EMAIL, PHONE_LABEL, waLink } from '../config'
 import AppIcon from './AppIcon.vue'
 import BrandedImg from './BrandedImg.vue'
 </script>
@@ -17,6 +17,7 @@ import BrandedImg from './BrandedImg.vue'
           </a>
           <a class="btn btn--ghost" href="#orcamento">Pedir orçamento</a>
         </div>
+        <p class="cta__mail">Prefere e-mail? <a :href="`mailto:${EMAIL}`">{{ EMAIL }}</a></p>
       </div>
       <figure class="cta__photo">
         <BrandedImg path="img/v3/traseira.webp" alt="Traseira do caminhão da AB com a logo nas portas, lanternas acesas na doca" width="1376" height="768" loading="lazy" />
@@ -35,6 +36,8 @@ import BrandedImg from './BrandedImg.vue'
 }
 .cta__phone:hover { text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 8px; }
 .cta__actions { display: flex; flex-wrap: wrap; gap: 14px; }
+.cta__mail { color: var(--tinta-3); font-size: 16px; overflow-wrap: anywhere; }
+.cta__mail a { color: var(--tinta); font-weight: 600; }
 .cta__photo { position: relative; border-radius: 18px; overflow: hidden; aspect-ratio: 4 / 3.1; background: #0E0F11; box-shadow: 0 50px 100px -50px rgba(227, 20, 27, .45); }
 .cta__photo :deep(img) { width: 100%; height: 100%; object-fit: cover; object-position: 50% 42%; }
 
