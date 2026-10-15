@@ -2,7 +2,7 @@
 import { nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
 import { waLink } from '../config'
 import { gsap, reducedMotion } from '../composables/motion'
-import { composeBranded, loadImage } from '../composables/useBrandedImage'
+import { composeBranded, composeBrandedCanvas, loadImage } from '../composables/useBrandedImage'
 import { createRoadScene } from '../composables/roadScene'
 import AppIcon from './AppIcon.vue'
 
@@ -17,7 +17,7 @@ const MOBILE = '(max-width: 900px)'
 const hero = ref(null)
 const canvas = ref(null)
 const still = ref(null)
-const stillSrc = ref(base + 'img/v3/hero-base.webp')
+const stillSrc = ref('')
 const ready = ref(false)
 const titleEl = ref(null)
 const pinA = ref(null)
@@ -82,10 +82,9 @@ function loop(now) {
 }
 
 async function startScene() {
-  const brandedUrl = await composeBranded('img/v3/hero-base.webp')
-  stillSrc.value = brandedUrl
+  // a foto com a logo vai direto do canvas para a textura (sem gerar arquivo no meio)
   const [baseImg, plate, alpha, light] = await Promise.all([
-    loadImage(brandedUrl),
+    composeBrandedCanvas('img/v3/hero-base.webp'),
     loadImage(base + 'img/v3/hero-plate.webp'),
     loadImage(base + 'img/v3/hero-alpha.webp'),
     loadImage(base + 'img/v3/hero-light.webp'),
@@ -148,7 +147,11 @@ onMounted(async () => {
   drawRoute()
   await nextTick()
   intro()
-  startScene().catch(() => { ready.value = false })
+  startScene().catch(async () => {
+    // sem WebGL: mostra a foto parada, com a logo
+    ready.value = false
+    stillSrc.value = await composeBranded('img/v3/hero-base.webp')
+  })
 })
 
 onBeforeUnmount(() => {
@@ -164,7 +167,7 @@ onBeforeUnmount(() => {
 <template>
   <section id="topo" ref="hero" class="hero">
     <div class="hero__media" aria-hidden="true">
-      <img ref="still" class="hero__still" :src="stillSrc" alt="" width="2376" height="1008" fetchpriority="high">
+      <img v-show="stillSrc" ref="still" class="hero__still" :src="stillSrc || undefined" alt="" width="2376" height="1008">
       <canvas ref="canvas" class="hero__canvas" :class="{ 'hero__canvas--on': ready }"></canvas>
       <div class="hero__shade"></div>
     </div>

@@ -91,12 +91,13 @@ function drawLogoQuad(ctx, logo, quad, { w, h }, steps = 10) {
   return { canvas: off, x: bx, y: by }
 }
 
-// Desenha a foto e, por cima, a logo em cada posição configurada em brand.js.
-export async function composeBranded(path) {
-  const spots = PLACEMENTS[path]
-  if (!spots || !spots.length) return base + path
-  if (cache.has(path)) return cache.get(path)
+const canvasCache = new Map()
+
+// Desenha a foto e, por cima, a logo em cada posição configurada em brand.js. Devolve o canvas.
+export function composeBrandedCanvas(path) {
+  if (canvasCache.has(path)) return canvasCache.get(path)
   const job = (async () => {
+    const spots = PLACEMENTS[path] || []
     logoPromise = logoPromise || loadImage(base + LOGO)
     const [photo, logo] = await Promise.all([loadImage(base + path), logoPromise])
     const canvas = document.createElement('canvas')
@@ -122,6 +123,19 @@ export async function composeBranded(path) {
       }
       ctx.restore()
     }
+    return canvas
+  })()
+  canvasCache.set(path, job)
+  return job
+}
+
+// Mesma composição, como endereço de imagem (blob) para usar em <img>.
+export async function composeBranded(path) {
+  const spots = PLACEMENTS[path]
+  if (!spots || !spots.length) return base + path
+  if (cache.has(path)) return cache.get(path)
+  const job = (async () => {
+    const canvas = await composeBrandedCanvas(path)
     const blob = await new Promise((r) => canvas.toBlob(r, 'image/webp', 0.92))
     return blob ? URL.createObjectURL(blob) : base + path
   })().catch(() => base + path)
