@@ -68,7 +68,9 @@ const year = new Date().getFullYear()
 
 @media (max-width: 640px) {
   .footer { padding-bottom: 104px; }
-  .footer__brand { flex: 1 1 200px; }
+  .footer__brand { flex: 1 1 100%; }
+  .footer__logo { width: 72px; height: 72px; }
+  .footer__contact { flex-direction: column; }
   .insta { width: 100%; }
 }
 </style>
