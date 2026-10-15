@@ -28,7 +28,7 @@ const year = new Date().getFullYear()
     </div>
     <div class="container footer__credits">
       <span>© {{ year }} AB Transportes</span>
-      <span>Desenvolvido por <strong>Praxis RM</strong></span>
+      <span>Desenvolvido por <strong>Korvex</strong></span>
     </div>
   </footer>
 </template>
