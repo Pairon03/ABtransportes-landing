@@ -11,10 +11,8 @@ export const LOGO = 'brand/logo.webp'
 export const LOGO_SIZE = { w: 640, h: 640 }
 
 export const PLACEMENTS = {
-  // topo: baú do caminhão na estrada (foto ampliada 2376 × 1008)
-  'img/v3/hero-base.webp': [
-    { quad: [[1704.4, 281.4], [1859.7, 301.4], [1860.5, 568.9], [1704.7, 573.9]], blend: 'multiply' },
-  ],
+  // topo: sem logo no caminhão (pedido do cliente). Para voltar, use:
+  // 'img/v3/hero-base.webp': [{ quad: [[1704.4, 281.4], [1859.7, 301.4], [1860.5, 568.9], [1704.7, 573.9]], blend: 'multiply' }],
   // frota (fotos 1264 × 848)
   'img/v3/frota-caminhao.webp': [
     { quad: [[662, 284], [852, 284], [852, 474], [662, 474]], blend: 'multiply' },
