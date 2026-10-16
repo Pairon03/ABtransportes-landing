@@ -30,7 +30,7 @@ const DEV_EMAIL = 'cv.korvex@gmail.com'
     <div class="container footer__credits">
       <span>© {{ year }} AB Transportes</span>
       <span class="footer__dev">
-        <span>Desenvolvido por <strong>Korvex</strong></span>
+        <span>Desenvolvido por <a class="footer__korvex" href="https://cmkorvex.vercel.app/" target="_blank" rel="noopener">Korvex</a></span>
         <a :href="`mailto:${DEV_EMAIL}`">{{ DEV_EMAIL }}</a>
       </span>
     </div>
@@ -71,6 +71,8 @@ const DEV_EMAIL = 'cv.korvex@gmail.com'
 .footer__credits strong { color: var(--ink); font-weight: 700; }
 .footer__dev { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; text-align: right; }
 .footer__dev a { color: var(--tinta-3); font-size: 13px; text-decoration: none; }
+.footer__dev .footer__korvex { color: var(--tinta); font-size: inherit; font-weight: 700; text-decoration: underline; text-decoration-color: rgba(244, 242, 236, .35); text-underline-offset: 3px; }
+.footer__dev .footer__korvex:hover { text-decoration-color: currentColor; }
 .footer__dev a:hover { color: var(--tinta); text-decoration: underline; }
 
 @media (max-width: 640px) {
