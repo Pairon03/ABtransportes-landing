@@ -30,7 +30,7 @@ const DEV_EMAIL = 'cv.korvex@gmail.com'
     <div class="container footer__credits">
       <span>© {{ year }} AB Transportes</span>
       <span class="footer__dev">
-        <span>Desenvolvido por <a class="footer__korvex" href="https://cmkorvex.vercel.app/" target="_blank" rel="noopener">Korvex</a></span>
+        <span>Desenvolvido por <a class="footer__korvex" href="https://cvkorvex.vercel.app/" target="_blank" rel="noopener">Korvex</a></span>
         <a :href="`mailto:${DEV_EMAIL}`">{{ DEV_EMAIL }}</a>
       </span>
     </div>
