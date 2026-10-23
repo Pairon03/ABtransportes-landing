@@ -4,7 +4,7 @@ import AppIcon from './AppIcon.vue'
 
 const base = import.meta.env.BASE_URL
 const year = new Date().getFullYear()
-const DEV_EMAIL = 'cv.korvex@gmail.com'
+const DEV_EMAIL = 'vm.korvex@gmail.com'
 </script>
 
 <template>
@@ -30,7 +30,7 @@ const DEV_EMAIL = 'cv.korvex@gmail.com'
     <div class="container footer__credits">
       <span>© {{ year }} AB Transportes</span>
       <span class="footer__dev">
-        <span>Desenvolvido por <a class="footer__korvex" href="https://cvkorvex.vercel.app/" target="_blank" rel="noopener">Korvex</a></span>
+        <span>Desenvolvido por <a class="footer__korvex" href="https://vmkorvex.vercel.app/" target="_blank" rel="noopener">Korvex</a></span>
         <a :href="`mailto:${DEV_EMAIL}`">{{ DEV_EMAIL }}</a>
       </span>
     </div>
