@@ -1,22 +1,31 @@
-/* AB Transportes — tokens e base (esboço v3)
-   Asfalto (chumbo) como base, vermelho da marca como destaque, branco "tinta de faixa" no texto.
-   Barlow Condensed nas manchetes (inclinada, como o "AB TRANSPORTES" da logo) e Barlow no texto. */
+/* AB Transportes — tokens e base
+   Cores da logo nova: fundo off-white acinzentado, azul-marinho como cor de texto e de apoio,
+   vermelho da marca como destaque. Barlow Condensed nas manchetes (inclinada, como o
+   "AB TRANSPORTES" da logo) e Barlow no texto. */
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 
-  --asfalto: #2A2C30;
-  --asfalto-2: #33363B;
-  --asfalto-3: #3E4147;
-  --noite: #1C1D20;
+  --fundo: #ECEDEA;
+  --fundo-2: #E3E5E2;
+  --cartao: #FFFFFF;
+  --azul: #0A2A5C;
+  --azul-2: #163D7A;
+  --azul-noite: #061B3D;
   --vermelho: #E3141B;
   --vermelho-2: #C40F15;
   --vermelho-claro: #FF5A60;
   --vinho: #8A0B10;
-  --tinta: #F4F2EC;
-  --tinta-2: #C3C3CA;
-  --tinta-3: #9C9EA6;
-  --linha: #474A51;
+  --tinta: #0A2A5C;
+  --tinta-2: #3D4A63;
+  --tinta-3: #5E6880;
+  --linha: #CDD1D7;
+
+  /* nomes da versão escura, mantidos para não quebrar os componentes */
+  --asfalto: var(--fundo);
+  --asfalto-2: var(--cartao);
+  --asfalto-3: var(--fundo-2);
+  --noite: var(--azul-noite);
 
   /* nomes antigos, usados pelo orçamento e pelo rodapé */
   --paper: var(--asfalto);
@@ -58,10 +67,10 @@ body {
 h1, h2, h3, p, ol, ul, dl, dd, figure, blockquote { margin: 0; }
 ol, ul { padding: 0; list-style: none; }
 img, svg, canvas { display: block; max-width: 100%; }
-a { color: var(--vermelho-claro); }
+a { color: var(--vermelho-2); }
 button { font: inherit; }
 ::selection { background: var(--vermelho); color: #fff; }
-:focus-visible { outline: 3px solid var(--vermelho-claro); outline-offset: 3px; border-radius: 4px; }
+:focus-visible { outline: 3px solid var(--vermelho); outline-offset: 3px; border-radius: 4px; }
 
 .skip {
   position: absolute; left: 16px; top: -64px; z-index: 60;
@@ -108,10 +117,10 @@ button { font: inherit; }
 .btn--orange, .btn--red { background: var(--vermelho); color: #fff; box-shadow: 0 5px 0 var(--vinho); }
 .btn--orange:hover, .btn--red:hover { background: #F0252C; color: #fff; transform: translateY(-2px); box-shadow: 0 7px 0 var(--vinho); }
 .btn--orange:active, .btn--red:active { transform: translateY(3px); box-shadow: 0 2px 0 var(--vinho); }
-.btn--ghost { background: transparent; color: var(--tinta); box-shadow: inset 0 0 0 2px var(--linha); }
-.btn--ghost:hover { box-shadow: inset 0 0 0 2px var(--tinta); color: #fff; }
-.btn--ink { background: var(--tinta); color: #16171A; }
-.btn--ink:hover { background: #fff; color: #16171A; }
+.btn--ghost { background: transparent; color: var(--azul); box-shadow: inset 0 0 0 2px var(--linha); }
+.btn--ghost:hover { box-shadow: inset 0 0 0 2px var(--azul); color: var(--azul); }
+.btn--ink { background: var(--azul); color: #fff; }
+.btn--ink:hover { background: var(--azul-2); color: #fff; }
 .btn--glass {
   color: #fff; background: rgba(255, 255, 255, .08);
   box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, .32);

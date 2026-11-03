@@ -51,7 +51,7 @@ onBeforeUnmount(() => { tween && tween.scrollTrigger && tween.scrollTrigger.kill
   background-color: #232427;
   background-size: auto, auto 100%;
   background-repeat: no-repeat, repeat-x;
-  box-shadow: 0 -1px 0 rgba(255, 255, 255, .05), 0 30px 60px -30px rgba(0, 0, 0, .7);
+  box-shadow: 0 -1px 0 rgba(255, 255, 255, .05), 0 30px 60px -30px rgba(6, 27, 61, .45);
 }
 .road__edge { position: absolute; left: 0; right: 0; height: 5px; background: rgba(236, 234, 228, .85); }
 .road__edge--top { top: 14%; }
