@@ -28,11 +28,11 @@ onBeforeUnmount(() => window.removeEventListener('scroll', onScroll))
 .float {
   position: fixed; right: 20px; bottom: 20px; z-index: 40;
   display: grid; place-items: center; width: 62px; height: 62px; border-radius: 50%;
-  background: var(--cobalt); color: #fff; text-decoration: none;
-  box-shadow: 0 14px 30px -10px rgba(0, 0, 0, 0.45);
+  background: var(--vermelho); color: #fff; text-decoration: none;
+  box-shadow: 0 14px 30px -10px rgba(6, 27, 61, 0.45);
   transform: translateY(100px) scale(.8); opacity: 0;
   transition: transform .4s var(--ease-out), opacity .3s ease, background-color .2s ease;
 }
 .float--on { transform: none; opacity: 1; }
-.float:hover { background: var(--cobalt-2); }
+.float:hover { background: var(--vermelho-2); }
 </style>

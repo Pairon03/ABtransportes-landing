@@ -27,18 +27,18 @@ import BrandedImg from './BrandedImg.vue'
 </template>
 
 <style scoped>
-.cta { background: linear-gradient(180deg, var(--asfalto) 0%, var(--noite) 100%); }
+.cta { background: linear-gradient(180deg, var(--fundo) 0%, var(--fundo-2) 100%); }
 .cta__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: clamp(32px, 5vw, 80px); align-items: center; }
 .cta__copy { display: flex; flex-direction: column; gap: 22px; align-items: flex-start; }
 .cta__phone {
   font-family: var(--font-display); font-weight: 800; font-style: italic;
-  font-size: clamp(44px, 5vw, 72px); line-height: 1; color: var(--vermelho-claro); text-decoration: none;
+  font-size: clamp(44px, 5vw, 72px); line-height: 1; color: var(--vermelho); text-decoration: none;
 }
 .cta__phone:hover { text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 8px; }
 .cta__actions { display: flex; flex-wrap: wrap; gap: 14px; }
 .cta__mail { color: var(--tinta-3); font-size: 16px; overflow-wrap: anywhere; }
-.cta__mail a { color: var(--tinta); font-weight: 600; }
-.cta__photo { position: relative; border-radius: 18px; overflow: hidden; aspect-ratio: 4 / 3.1; background: #0E0F11; box-shadow: 0 50px 100px -50px rgba(227, 20, 27, .45); }
+.cta__mail a { color: var(--azul); font-weight: 600; }
+.cta__photo { position: relative; border-radius: 18px; overflow: hidden; aspect-ratio: 4 / 3.1; background: var(--azul-noite); box-shadow: 0 50px 100px -50px rgba(6, 27, 61, .55); }
 .cta__photo :deep(img) { width: 100%; height: 100%; object-fit: cover; object-position: 50% 42%; }
 
 @media (max-width: 900px) {

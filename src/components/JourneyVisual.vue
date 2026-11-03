@@ -17,7 +17,7 @@ const base = import.meta.env.BASE_URL
     <!-- 1. pedido pelo WhatsApp -->
     <div v-if="kind === 'pedido'" class="chat" aria-label="Exemplo de conversa pedindo um orçamento pelo WhatsApp">
       <div class="chat__head">
-        <img class="chat__avatar" :src="base + 'brand/logo-160.webp'" alt="" width="40" height="40">
+        <img class="chat__avatar" :src="base + 'brand/avatar-160.webp'" alt="" width="40" height="40">
         <span><strong>AB Transportes</strong><small>online</small></span>
       </div>
       <div class="chat__body">
@@ -58,12 +58,12 @@ const base = import.meta.env.BASE_URL
 
 /* conversa */
 .chat {
-  background: #141518; border-radius: 22px; padding: 14px; max-width: 460px;
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .08), 0 40px 80px -40px rgba(0, 0, 0, .9);
+  background: var(--cartao); border-radius: 22px; padding: 14px; max-width: 460px;
+  box-shadow: inset 0 0 0 1px rgba(10, 42, 92, .08), 0 40px 80px -40px rgba(6, 27, 61, .45);
 }
-.chat__head { display: flex; gap: 12px; align-items: center; padding: 4px 6px 12px; border-bottom: 1px solid #26282C; }
+.chat__head { display: flex; gap: 12px; align-items: center; padding: 4px 6px 12px; border-bottom: 1px solid #E3E6EB; }
 .chat__head strong { display: block; font-size: 16px; }
-.chat__head small { display: block; font-size: 13px; color: #4ADE80; }
+.chat__head small { display: block; font-size: 13px; color: #15803D; }
 .chat__avatar { width: 40px; height: 40px; border-radius: 50%; flex: none; }
 .chat__body { display: grid; gap: 8px; padding: 14px 2px 4px; }
 .bubble {
@@ -72,13 +72,13 @@ const base = import.meta.env.BASE_URL
   transition: opacity .4s ease, transform .45s var(--ease-out); transition-delay: calc(var(--i) * .45s);
 }
 .bubble time { position: absolute; right: 10px; bottom: 4px; font-size: 11px; opacity: .7; }
-.bubble--me { justify-self: end; background: var(--vermelho); color: #fff; border-bottom-right-radius: 4px; }
-.bubble--them { justify-self: start; background: #26282C; color: var(--tinta); border-bottom-left-radius: 4px; }
+.bubble--me { justify-self: end; background: var(--azul); color: #fff; border-bottom-right-radius: 4px; }
+.bubble--them { justify-self: start; background: #EEF0F3; color: var(--tinta); border-bottom-left-radius: 4px; }
 .jv--on .bubble { opacity: 1; transform: none; }
 
 /* fotos */
 .shot { max-width: 440px; }
-.shot__frame { position: relative; border-radius: 18px; overflow: hidden; box-shadow: 0 40px 80px -40px rgba(0, 0, 0, .9); }
+.shot__frame { position: relative; border-radius: 18px; overflow: hidden; box-shadow: 0 40px 80px -40px rgba(6, 27, 61, .55); }
 .shot__frame :deep(img), .shot__frame > img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; transform: scale(1.06); transition: transform 1.2s var(--ease-out); }
 .jv--on .shot__frame :deep(img), .jv--on .shot__frame > img { transform: none; }
 .shot__flash { position: absolute; inset: 0; background: #fff; opacity: 0; pointer-events: none; }
@@ -98,7 +98,7 @@ const base = import.meta.env.BASE_URL
   display: inline-flex; align-items: center; gap: 8px; margin-top: 14px;
   font-size: 15px; font-weight: 600; color: var(--tinta-2);
 }
-.tag :deep(svg) { color: var(--vermelho-claro); }
+.tag :deep(svg) { color: var(--vermelho); }
 .stamp {
   position: absolute; top: 24px; right: 20px; display: inline-flex; align-items: center; gap: 6px;
   padding: 8px 14px; border-radius: 8px; border: 3px solid var(--vermelho); color: var(--vermelho);

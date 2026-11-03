@@ -90,7 +90,7 @@ async function startScene() {
     loadImage(base + 'img/v3/hero-light.webp'),
   ])
   scene = createRoadScene(canvas.value, { base: baseImg, plate, alpha, light }, {
-    src: SRC, vp: VP, speed: 0.34, skyTop: [0.11, 0.115, 0.13],
+    src: SRC, vp: VP, speed: 0.34, skyTop: [0.035, 0.09, 0.19],
   })
   layout()
   scene.render(0, framing, 0)
@@ -209,7 +209,7 @@ onBeforeUnmount(() => {
   position: relative; isolation: isolate; overflow: hidden;
   height: min(100svh, 960px); min-height: 640px;
   margin-top: calc(var(--header-h) * -1);
-  background: var(--noite); color: #fff;
+  background: var(--azul-noite); color: #fff;
   display: flex; flex-direction: column;
 }
 .hero__media { position: absolute; inset: 0; z-index: -1; transform-origin: 70% 60%; }
@@ -219,16 +219,15 @@ onBeforeUnmount(() => {
 .hero__shade {
   position: absolute; inset: 0;
   background:
-    linear-gradient(90deg, rgba(18, 19, 22, 0.9) 0%, rgba(18, 19, 22, 0.66) 30%, rgba(18, 19, 22, 0.12) 52%, rgba(18, 19, 22, 0) 70%),
-    linear-gradient(0deg, var(--asfalto) 0%, rgba(42, 44, 48, 0) 16%),
-    linear-gradient(180deg, rgba(18, 19, 22, 0.55) 0%, rgba(18, 19, 22, 0) 22%);
+    linear-gradient(90deg, rgba(6, 27, 61, 0.9) 0%, rgba(6, 27, 61, 0.68) 30%, rgba(6, 27, 61, 0.14) 52%, rgba(6, 27, 61, 0) 70%),
+    linear-gradient(180deg, rgba(6, 27, 61, 0.55) 0%, rgba(6, 27, 61, 0) 22%);
 }
 
 .hero__inner { flex: 1; display: flex; align-items: center; padding-top: calc(var(--header-h) + 24px); padding-bottom: 72px; }
 .hero__inner .container { width: 100%; }
 .hero__copy { max-width: 600px; display: flex; flex-direction: column; gap: 26px; }
 
-.hero__title { position: relative; font-size: clamp(60px, 7.6vw, 124px); color: var(--tinta); }
+.hero__title { position: relative; font-size: clamp(60px, 7.6vw, 124px); color: #fff; }
 .hero__line { display: block; position: relative; z-index: 1; }
 .hero__route { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; z-index: 0; pointer-events: none; }
 .hero__route path { fill: none; stroke: var(--vermelho); stroke-width: 5; stroke-linecap: round; filter: drop-shadow(0 0 10px rgba(227, 20, 27, .55)); }
@@ -247,7 +246,7 @@ onBeforeUnmount(() => {
 }
 .pin--b .pin__letter { color: var(--vermelho); }
 
-.hero__lead { font-size: clamp(18px, 1.45vw, 21px); line-height: 1.55; color: #D9D8D3; max-width: 26em; }
+.hero__lead { font-size: clamp(18px, 1.45vw, 21px); line-height: 1.55; color: #DCE2EE; max-width: 26em; }
 .hero__actions { display: flex; flex-wrap: wrap; gap: 14px; }
 .hero__stage { display: none; }
 
@@ -259,8 +258,7 @@ onBeforeUnmount(() => {
   .hero__stage { display: block; flex: 1; min-height: 70vw; }
   .hero__shade {
     background:
-      linear-gradient(180deg, rgba(18, 19, 22, 0.7) 0%, rgba(18, 19, 22, 0.35) 45%, rgba(18, 19, 22, 0) 62%),
-      linear-gradient(0deg, var(--asfalto) 0%, rgba(42, 44, 48, 0) 14%);
+      linear-gradient(180deg, rgba(6, 27, 61, 0.72) 0%, rgba(6, 27, 61, 0.35) 45%, rgba(6, 27, 61, 0) 62%);
   }
   .hero__actions { flex-wrap: nowrap; gap: 10px; }
   .hero__actions .btn { flex: 1 1 0; padding: 0 14px; font-size: 19px; }

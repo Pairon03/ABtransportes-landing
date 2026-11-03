@@ -102,24 +102,24 @@ function onKey(e) {
 .picker__opt {
   display: grid; grid-template-columns: 48px minmax(0, 1fr); grid-template-rows: auto auto; column-gap: 14px; align-items: center;
   text-align: left; padding: 16px 18px; border-radius: 12px; border: 0; cursor: pointer;
-  background: var(--asfalto-2); color: var(--tinta-2); box-shadow: inset 0 0 0 1px var(--linha);
+  background: var(--cartao); color: var(--tinta-2); box-shadow: inset 0 0 0 1px var(--linha);
   transition: background-color .25s ease, box-shadow .25s ease, color .25s ease;
 }
-.picker__opt:hover { box-shadow: inset 0 0 0 1px var(--tinta-3); color: var(--tinta); }
+.picker__opt:hover { box-shadow: inset 0 0 0 1px var(--azul); color: var(--tinta); }
 .picker__icon {
   grid-row: 1 / 3; display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%;
-  background: var(--asfalto-3); color: var(--tinta); transition: background-color .25s ease;
+  background: var(--fundo-2); color: var(--azul); transition: background-color .25s ease;
 }
 .picker__cargo { font-size: 16px; line-height: 1.25; }
 .picker__vehicle { font-family: var(--font-display); font-weight: 700; font-size: 24px; line-height: 1.05; color: var(--tinta); }
-.picker__opt[aria-checked='true'] { background: var(--tinta); color: #3A3B40; box-shadow: none; }
-.picker__opt[aria-checked='true'] .picker__vehicle { color: #16171A; }
+.picker__opt[aria-checked='true'] { background: var(--azul); color: #C6CFE0; box-shadow: none; }
+.picker__opt[aria-checked='true'] .picker__vehicle { color: #fff; }
 .picker__opt[aria-checked='true'] .picker__icon { background: var(--vermelho); color: #fff; }
 .picker__hint { margin-top: 10px; font-size: 15px; color: var(--tinta-3); }
-.picker__hint a { color: var(--tinta); font-weight: 600; }
+.picker__hint a { color: var(--azul); font-weight: 600; }
 
 /* galpão */
-.bay { position: relative; display: grid; border-radius: 18px; overflow: hidden; background: #111214; isolation: isolate; }
+.bay { position: relative; display: grid; border-radius: 18px; overflow: hidden; background: var(--azul-noite); isolation: isolate; }
 .bay__frame { grid-area: 1 / 1; position: relative; aspect-ratio: 16 / 10; overflow: hidden; }
 .bay__img {
   position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 62%;
@@ -131,13 +131,13 @@ function onKey(e) {
   grid-area: 1 / 1; align-self: end; position: relative; z-index: 1;
   display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: end; gap: 6px 24px;
   padding: clamp(18px, 3vw, 32px);
-  background: linear-gradient(0deg, rgba(10, 10, 12, .9) 0%, rgba(10, 10, 12, .55) 55%, rgba(10, 10, 12, 0) 100%);
+  background: linear-gradient(0deg, rgba(6, 27, 61, .9) 0%, rgba(6, 27, 61, .55) 55%, rgba(6, 27, 61, 0) 100%);
 }
 .bay__name {
   font-family: var(--font-display); font-weight: 800; font-style: italic; text-transform: uppercase;
   font-size: clamp(54px, 6.5vw, 96px); line-height: .82; color: #fff; letter-spacing: .005em;
 }
-.bay__text { color: #DCDBD6; max-width: 22em; padding-bottom: 6px; }
+.bay__text { color: #DCE2EE; max-width: 22em; padding-bottom: 6px; }
 .bay__cta { white-space: nowrap; }
 
 .name-enter-active, .name-leave-active { transition: transform .35s var(--ease-out), opacity .25s ease; }
@@ -162,5 +162,8 @@ function onKey(e) {
   .bay__caption { background: none; padding: 18px 0 0; }
   .bay__frame { border-radius: 14px; }
   .bay { background: none; border-radius: 0; overflow: visible; }
+  /* no celular a legenda fica fora da foto, sobre o fundo claro */
+  .bay__name { color: var(--azul); }
+  .bay__text { color: var(--tinta-2); }
 }
 </style>

@@ -59,18 +59,18 @@ const done = computed(() => len.value * (1 - t.value))
 <template>
   <figure class="map" aria-label="Exemplo de acompanhamento em tempo real no mapa">
     <svg class="map__svg" viewBox="0 0 600 420" aria-hidden="true">
-      <rect width="600" height="420" fill="#1E2023" />
+      <rect width="600" height="420" fill="#E6E9E4" />
       <!-- rio e parques -->
-      <path d="M-10 300 C 120 250, 230 330, 360 270 S 560 220, 610 236" fill="none" stroke="#22303A" stroke-width="30" stroke-linecap="round" />
-      <rect x="400" y="300" width="120" height="70" rx="8" fill="#22291F" />
-      <rect x="250" y="60" width="90" height="64" rx="8" fill="#22291F" />
+      <path d="M-10 300 C 120 250, 230 330, 360 270 S 560 220, 610 236" fill="none" stroke="#BFD3E8" stroke-width="30" stroke-linecap="round" />
+      <rect x="400" y="300" width="120" height="70" rx="8" fill="#D2E3C6" />
+      <rect x="250" y="60" width="90" height="64" rx="8" fill="#D2E3C6" />
       <!-- ruas -->
-      <g stroke="#2C2F34" stroke-width="5" stroke-linecap="round">
+      <g stroke="#F6F7F5" stroke-width="5" stroke-linecap="round">
         <path v-for="y in [40, 96, 150, 206, 330, 390]" :key="`h${y}`" :d="`M-10 ${y} L610 ${y - 34}`" />
         <path v-for="x in [40, 110, 180, 250, 320, 390, 460, 530]" :key="`v${x}`" :d="`M${x} -10 L${x + 40} 430`" />
       </g>
       <!-- avenidas por onde passa a rota -->
-      <g stroke="#3A3E45" stroke-width="13" stroke-linecap="round" fill="none">
+      <g stroke="#FFFFFF" stroke-width="13" stroke-linecap="round" fill="none">
         <path d="M10 352 L210 352" />
         <path d="M120 390 L240 240" />
         <path d="M170 282 L380 282" />
@@ -79,18 +79,18 @@ const done = computed(() => len.value * (1 - t.value))
         <path d="M470 190 L560 50" />
       </g>
       <!-- rota inteira (pontilhada) e trecho já feito (vermelho) -->
-      <path :d="ROUTE" fill="none" stroke="#7B7E86" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1 11" />
+      <path :d="ROUTE" fill="none" stroke="#8A93A6" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1 11" />
       <path ref="routeEl" :d="ROUTE" fill="none" stroke="#E3141B" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"
         :stroke-dasharray="len" :stroke-dashoffset="done" />
       <!-- A e B -->
       <g transform="translate(70 352)">
-        <circle r="15" fill="#E3141B" stroke="#1E2023" stroke-width="4" />
+        <circle r="15" fill="#E3141B" stroke="#fff" stroke-width="4" />
         <text y="6" text-anchor="middle" class="map__letter" fill="#fff">A</text>
       </g>
       <g transform="translate(532 96)">
-        <circle r="26" fill="#fff" opacity=".12" class="map__pulse" />
-        <circle r="15" fill="#fff" stroke="#1E2023" stroke-width="4" />
-        <text y="6" text-anchor="middle" class="map__letter" fill="#E3141B">B</text>
+        <circle r="26" fill="#0A2A5C" opacity=".18" class="map__pulse" />
+        <circle r="15" fill="#0A2A5C" stroke="#fff" stroke-width="4" />
+        <text y="6" text-anchor="middle" class="map__letter" fill="#fff">B</text>
       </g>
       <!-- veículo -->
       <g :transform="`translate(${pos.x} ${pos.y})`">
@@ -119,8 +119,8 @@ const done = computed(() => len.value * (1 - t.value))
 
 <style scoped>
 .map {
-  position: relative; overflow: hidden; border-radius: 18px; background: #1E2023;
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .08), 0 40px 80px -40px rgba(0, 0, 0, .9);
+  position: relative; overflow: hidden; border-radius: 18px; background: #E6E9E4;
+  box-shadow: inset 0 0 0 1px rgba(10, 42, 92, .08), 0 40px 80px -40px rgba(6, 27, 61, .45);
 }
 .map__svg { width: 100%; height: auto; }
 .map__letter { font-family: var(--font-display); font-weight: 800; font-size: 17px; }
@@ -133,8 +133,8 @@ const done = computed(() => len.value * (1 - t.value))
 }
 .map__live, .map__ago {
   display: inline-flex; align-items: center; gap: 8px; padding: 7px 12px; border-radius: 999px;
-  background: rgba(20, 21, 24, .82); font-size: 14px; font-weight: 600;
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .1); backdrop-filter: blur(6px);
+  background: rgba(255, 255, 255, .9); color: var(--azul); font-size: 14px; font-weight: 600;
+  box-shadow: 0 2px 8px rgba(6, 27, 61, .12); backdrop-filter: blur(6px);
 }
 .map__ago { color: var(--tinta-2); font-weight: 500; }
 .map__dot { width: 9px; height: 9px; border-radius: 50%; background: var(--vermelho); animation: live 1.8s ease-out infinite; }
@@ -142,17 +142,17 @@ const done = computed(() => len.value * (1 - t.value))
 
 .map__bottom {
   display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 1px;
-  background: rgba(255, 255, 255, .08); border-top: 1px solid rgba(255, 255, 255, .08);
+  background: #E3E6EB; border-top: 1px solid #E3E6EB;
 }
 .map__eta, .map__window {
   display: flex; flex-direction: column; justify-content: center; gap: 2px;
-  padding: 12px 16px; background: #212327;
+  padding: 12px 16px; background: var(--cartao);
 }
 .map small { font-size: 13px; color: var(--tinta-3); line-height: 1.2; }
 .map__eta strong { font-family: var(--font-display); font-size: 28px; font-weight: 700; line-height: 1; }
 .map__window { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; column-gap: 10px; }
 .map__window > small:first-child { grid-column: 1 / -1; }
-.map__bar { display: block; height: 6px; border-radius: 6px; background: rgba(255, 255, 255, .12); overflow: hidden; }
+.map__bar { display: block; height: 6px; border-radius: 6px; background: #E3E6EB; overflow: hidden; }
 .map__bar span { display: block; height: 100%; background: var(--vermelho); border-radius: 6px; transition: width .4s linear; }
 .map__window-cap { color: var(--tinta-2) !important; font-weight: 600; }
 

@@ -38,15 +38,20 @@ const DEV_EMAIL = 'vm.korvex@gmail.com'
 </template>
 
 <style scoped>
-.footer { background: var(--noite); padding-top: 40px; padding-bottom: 48px; border-top: 1px solid rgba(255, 255, 255, .06); }
+.footer {
+  background: var(--azul-noite); color: #fff; padding-top: 40px; padding-bottom: 48px;
+  /* rodapé em azul-marinho: texto claro */
+  --tinta: #fff; --tinta-2: #C6CFE0; --tinta-3: #9AA6BE; --linha: rgba(255, 255, 255, .14);
+  --ink: #fff; --ink-2: #C6CFE0; --ink-3: #9AA6BE; --line: rgba(255, 255, 255, .14); --paper: rgba(255, 255, 255, .06);
+}
 .footer__inner { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
 .footer__brand { margin-right: auto; }
-.footer__logo { width: 96px; height: 96px; border-radius: 50%; flex: none; }
+.footer__logo { width: 96px; height: 96px; border-radius: 14px; flex: none; background: #fff; }
 .footer__name { font-family: var(--font-display); font-style: italic; font-weight: 800; font-size: 28px; line-height: 1; }
 .footer__tagline { color: var(--ink-2); }
 .footer__contact { display: flex; flex-wrap: wrap; gap: 4px 20px; margin-top: 8px; font-size: 16px; }
 .footer__contact a { color: var(--tinta); text-decoration: none; font-weight: 600; overflow-wrap: anywhere; }
-.footer__contact a:hover { color: var(--vermelho-claro); text-decoration: underline; }
+.footer__contact a:hover { color: #fff; text-decoration: underline; }
 
 .insta {
   display: inline-flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink);
@@ -71,7 +76,7 @@ const DEV_EMAIL = 'vm.korvex@gmail.com'
 .footer__credits strong { color: var(--ink); font-weight: 700; }
 .footer__dev { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; text-align: right; }
 .footer__dev a { color: var(--tinta-3); font-size: 13px; text-decoration: none; }
-.footer__dev .footer__korvex { color: var(--tinta); font-size: inherit; font-weight: 700; text-decoration: underline; text-decoration-color: rgba(244, 242, 236, .35); text-underline-offset: 3px; }
+.footer__dev .footer__korvex { color: var(--tinta); font-size: inherit; font-weight: 700; text-decoration: underline; text-decoration-color: rgba(255, 255, 255, .35); text-underline-offset: 3px; }
 .footer__dev .footer__korvex:hover { text-decoration-color: currentColor; }
 .footer__dev a:hover { color: var(--tinta); text-decoration: underline; }
 

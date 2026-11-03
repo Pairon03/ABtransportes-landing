@@ -117,7 +117,7 @@ onBeforeUnmount(() => { st && st.kill(); ro && ro.disconnect() })
 </template>
 
 <style scoped>
-.journey { background: linear-gradient(180deg, var(--noite) 0%, var(--asfalto) 100%); }
+.journey { background: var(--fundo); }
 .journey__head { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 24px 64px; align-items: end; margin-bottom: clamp(48px, 7vw, 96px); }
 .journey__head .lead { justify-self: end; }
 
@@ -127,17 +127,17 @@ onBeforeUnmount(() => { st && st.kill(); ro && ro.disconnect() })
 .rail { position: relative; }
 .rail__road {
   position: absolute; left: 50%; top: 0; bottom: 0; width: 44px; transform: translateX(-50%);
-  border-radius: 22px; background: #202125;
-  box-shadow: inset 2px 0 0 rgba(236, 234, 228, .5), inset -2px 0 0 rgba(236, 234, 228, .5);
+  border-radius: 22px; background: var(--azul);
+  box-shadow: inset 2px 0 0 rgba(255, 255, 255, .55), inset -2px 0 0 rgba(255, 255, 255, .55);
 }
 .rail__road::after {
   content: ''; position: absolute; left: 50%; top: 12px; bottom: 12px; width: 3px; transform: translateX(-50%);
-  background: repeating-linear-gradient(180deg, rgba(236, 234, 228, .55) 0 18px, transparent 18px 38px);
+  background: repeating-linear-gradient(180deg, rgba(255, 255, 255, .6) 0 18px, transparent 18px 38px);
 }
 .rail__done {
   position: absolute; left: 50%; top: 0; width: 8px; height: 100%; margin-left: -4px; border-radius: 4px;
   background: var(--vermelho); transform-origin: 50% 0; transform: scaleY(0);
-  box-shadow: 0 0 18px rgba(227, 20, 27, .6);
+  box-shadow: 0 0 14px rgba(227, 20, 27, .45);
 }
 .rail__marker {
   position: absolute; left: 50%; top: 0; width: 0; height: 0; z-index: 2; will-change: transform;
@@ -145,11 +145,11 @@ onBeforeUnmount(() => { st && st.kill(); ro && ro.disconnect() })
 .rail__dot {
   position: absolute; left: -24px; top: -24px; width: 48px; height: 48px; border-radius: 50%;
   display: grid; place-items: center; background: var(--vermelho); color: #fff;
-  box-shadow: 0 0 0 5px var(--noite), 0 0 0 6px rgba(255, 255, 255, .25), 0 12px 30px rgba(0, 0, 0, .6);
+  box-shadow: 0 0 0 5px var(--fundo), 0 0 0 6px rgba(10, 42, 92, .2), 0 12px 30px rgba(6, 27, 61, .35);
 }
 .rail__clock {
   position: absolute; left: 34px; top: -15px; padding: 4px 10px; border-radius: 6px;
-  background: var(--tinta); color: #16171A;
+  background: var(--azul); color: #fff;
   font-family: var(--font-display); font-weight: 700; font-size: 20px; line-height: 22px; white-space: nowrap;
 }
 
@@ -161,10 +161,10 @@ onBeforeUnmount(() => { st && st.kill(); ro && ro.disconnect() })
 .stop__pin {
   position: absolute; left: calc(-38px - 96px - 17px); top: 17px;
   width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center;
-  background: #2A2C30; color: var(--tinta-3); box-shadow: 0 0 0 3px #202125, inset 0 0 0 2px var(--linha);
+  background: var(--cartao); color: var(--tinta-3); box-shadow: 0 0 0 3px var(--azul), inset 0 0 0 2px var(--linha);
   transition: background-color .35s ease, color .35s ease, box-shadow .35s ease, transform .35s var(--ease-out);
 }
-.stop--on .stop__pin { background: var(--tinta); color: var(--vermelho); box-shadow: 0 0 0 3px #202125; }
+.stop--on .stop__pin { background: #fff; color: var(--vermelho); box-shadow: 0 0 0 3px var(--azul); }
 .stop--now .stop__pin { transform: scale(1.12); }
 
 .stop__text { display: flex; flex-direction: column; gap: 10px; padding-top: 6px; }
@@ -172,11 +172,11 @@ onBeforeUnmount(() => { st && st.kill(); ro && ro.disconnect() })
   font-family: var(--font-display); font-weight: 700; font-size: 22px; color: var(--tinta-3);
   transition: color .35s ease;
 }
-.stop--on .stop__time { color: var(--vermelho-claro); }
+.stop--on .stop__time { color: var(--vermelho); }
 .stop__title {
   font-family: var(--font-display); font-weight: 800; font-style: italic;
   font-size: clamp(34px, 3.2vw, 48px); line-height: .95; letter-spacing: -0.005em;
-  color: var(--tinta-3); transition: color .35s ease;
+  color: #9AA3B5; transition: color .35s ease;
 }
 .stop--on .stop__title { color: var(--tinta); }
 .stop__body { color: var(--tinta-2); max-width: 28em; }
